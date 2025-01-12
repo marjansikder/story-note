@@ -84,7 +84,7 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
           children: [
             Image.asset(
               "assets/icons/ic_pick_date.png",
-              scale: 14,
+              scale: 16,
               color: AppColors.kBrown.withOpacity(.4),
             ),
             const SizedBox(width: 8),
