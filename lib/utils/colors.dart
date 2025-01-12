@@ -59,6 +59,7 @@ class AppColors {
   static const kWarningToastTextColor = Color(0xFFFFA911);
   static const kWarningToastBgColor = Color(0xFFFFECCB);
   static const kDatePickerButtonColor = Color(0xFFF3CA93);
+  static const kFloatingButtonColor = Color(0xFFF3D593);
 
   static const kFollowupText = Color(0xff28A745);
   static const kFollowupBackground = Color(0xFFDFFDE6);

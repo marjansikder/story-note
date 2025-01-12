@@ -1,8 +1,7 @@
+import 'package:date_calculator/screen/dashboard/dashboard_screen.dart';
+import 'package:date_calculator/utils/font_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import '../../../../utils/font_util.dart';
-import '../../dashboard_screen.dart';
 
 class MenuAppBar extends ConsumerWidget implements PreferredSizeWidget {
   const MenuAppBar({super.key});

@@ -1,5 +1,4 @@
 import 'package:date_calculator/utils/colors.dart';
-import 'package:date_calculator/utils/font_util.dart';
 import 'package:date_calculator/utils/text_style.dart';
 import 'package:date_calculator/widgets/app_bar.dart';
 import 'package:flutter/material.dart';
@@ -271,7 +270,7 @@ class _HolidayCalenderState extends State<HolidayCalender> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset("assets/icons/Holiday.png", height: 14, color: AppColors.kBrown.withOpacity(.6)),
+                  Image.asset("assets/icons/Holiday.png", height: 12, color: AppColors.kBrown.withOpacity(.6)),
                   const SizedBox(width: 5),
                   Text(resultedDate,
                       style: getCustomTextStyle(

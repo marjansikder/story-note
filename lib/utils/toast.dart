@@ -1,7 +1,6 @@
+import 'package:date_calculator/main.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-
-import '../main.dart';
 import 'colors.dart';
 
 enum ToastType {

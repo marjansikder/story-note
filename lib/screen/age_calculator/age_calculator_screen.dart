@@ -1,11 +1,11 @@
+import 'package:date_calculator/utils/age_util.dart';
+import 'package:date_calculator/utils/colors.dart';
+import 'package:date_calculator/utils/font_util.dart';
+import 'package:date_calculator/utils/text_style.dart';
 import 'package:date_calculator/widgets/app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
-
-import '../../utils/age_util.dart';
-import '../../utils/colors.dart';
-import '../../utils/font_util.dart';
 
 class AgeCalculatorScreen extends ConsumerStatefulWidget {
   const AgeCalculatorScreen({super.key});
@@ -26,15 +26,98 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
 
   AgeDuration? ageDuration;
 
+  Widget _buildResultBox(String value, String label) {
+    return Column(
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            color: AppColors.kWarningToastBgColor.withOpacity(.7),
+            borderRadius: BorderRadius.circular(5),
+          ),
+          width: MediaQuery.of(context).size.width * .26,
+          height: MediaQuery.of(context).size.height * .1,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 0),
+            child: Center(
+              child: Text(
+                value,
+                maxLines: 1,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontSize: 32,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.brown,
+                ),
+              ),
+            ),
+          ),
+        ),
+        const SizedBox(height: 8),
+        Text(
+          label,
+          style: const TextStyle(
+            fontSize: 16,
+            color: Colors.brown,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildDateColumn(
+    BuildContext context, {
+    required VoidCallback onPressed,
+    required IconData icon,
+    required String label,
+    required String date,
+  }) {
+    return GestureDetector(
+      onTap: onPressed,
+      child: Container(
+        padding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(5),
+          color: AppColors.kWarningToastBgColor,
+        ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Image.asset(
+              "assets/icons/ic_pick_date.png",
+              scale: 16,
+              color: AppColors.kBrown.withOpacity(.4),
+            ),
+            const SizedBox(width: 8),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(
+                  label,
+                  style: getCustomTextStyle(fontSize: 12, color: AppColors.kTextGreyColor),
+                ),
+                Text(
+                  date,
+                  style: getCustomTextStyle(
+                    color: AppColors.kBrown.withOpacity(.6),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     String selectedFromDate =
         DateFormat("dd/MM/yyyy").format(_fromDate ?? DateTime.now());
     String selectedToDate =
         DateFormat("dd/MM/yyyy").format(_toDate ?? DateTime.now());
-
+    var height = MediaQuery.of(context).size.height;
     return Scaffold(
-      //backgroundColor: AppColors.kNewBackground.withOpacity(.1),
       backgroundColor: Color(0xFFFFFBED).withOpacity(.5),
       appBar: CustomAppBarWithShadow(title: 'Age Calculator'),
       body: Padding(
@@ -44,189 +127,92 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
             SizedBox(
               height: 20,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
+            Container(
+              decoration: BoxDecoration(
+                color: AppColors.kWhiteColor,
+                borderRadius: BorderRadius.circular(5),
+              ),
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text('Pick From Date', style: FontUtil.blackW500S12),
-                    ElevatedButton.icon(
-                      style: ElevatedButton.styleFrom(
-                        elevation: 0,
-                        backgroundColor:
-                            AppColors.kDatePickerButtonColor.withOpacity(.7),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5)),
-                        padding: const EdgeInsets.symmetric(horizontal: 30),
-                      ),
-                      icon: Image.asset("assets/icons/ic_pick_date.png",
-                          width: 14, color: AppColors.kBrown.withOpacity(.6)),
-                      label: Text(
-                        selectedFromDate,
-                        style:
-                            TextStyle(color: AppColors.kBrown.withOpacity(.6)),
-                      ),
+                    _buildDateColumn(
                       onPressed: () => selectFromDate(context),
+                      context,
+                      icon: Icons.calendar_today_outlined,
+                      label: 'Pick from date',
+                      date: selectedFromDate,
                     ),
-                  ],
-                ),
-                Column(
-                  children: [
-                    const Text('Pick To Date', style: FontUtil.blackW500S12),
-                    ElevatedButton.icon(
-                      style: ElevatedButton.styleFrom(
-                        elevation: 0,
-                        backgroundColor:
-                            AppColors.kDatePickerButtonColor.withOpacity(.7),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5)),
-                        padding: const EdgeInsets.symmetric(horizontal: 30),
-                      ),
-                      icon: Image.asset("assets/icons/ic_pick_date.png",
-                          width: 14, color: AppColors.kBrown.withOpacity(.6)),
-                      label: Text(
-                        selectedToDate,
-                        style:
-                            TextStyle(color: AppColors.kBrown.withOpacity(.6)),
-                      ),
+                    _buildDateColumn(
                       onPressed: () => selectToDate(context),
+                      context,
+                      icon: Icons.calendar_today_outlined,
+                      label: 'Pick to date',
+                      date: selectedToDate,
                     ),
                   ],
                 ),
-              ],
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            const Text('Calculated Result : ', style: FontUtil.blackW400S16),
-            SizedBox(
-              height: 15,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Expanded(
-                  child: Container(
-                    height: 120,
-                    width: double.infinity * .15,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      color: AppColors.kWarningToastBgColor.withOpacity(.7),
-                    ),
-                    child: Center(
-                      child: ListTile(
-                        title: Text(ageDuration?.years.toString() ?? '0',
-                            style: FontUtil.greenW600S22),
-                        subtitle: Text(
-                          'Years',
-                          style: FontUtil.grey800W400S16,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                Expanded(
-                  child: Container(
-                    height: 120,
-                    width: double.infinity * .15,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      color: AppColors.kWarningToastBgColor.withOpacity(.7),
-                    ),
-                    child: Center(
-                      child: ListTile(
-                        title: Text(ageDuration?.months.toString() ?? '0',
-                            style: FontUtil.greenW600S22),
-                        subtitle: Text(
-                          'Months',
-                          style: FontUtil.grey800W400S16,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                Expanded(
-                  child: Container(
-                    height: 120,
-                    width: double.infinity * .15,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      color: AppColors.kWarningToastBgColor.withOpacity(.7),
-                    ),
-                    child: Center(
-                      child: ListTile(
-                        title: Text(ageDuration?.days.toString() ?? '0',
-                            style: FontUtil.greenW600S22),
-                        subtitle: Text(
-                          'Days',
-                          style: FontUtil.grey800W400S16,
-                        ),
-                      ),
-                    ),
-                  ),
-                )
-              ],
-            ),
-            SizedBox(
-              height: 40,
-            ),
-
-            ///Column button
-            /*            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton.icon(
-                style: ElevatedButton.styleFrom(
-                  elevation: 0,
-                  backgroundColor: AppColors.appBarColor.withOpacity(0.7),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5)),
-                  padding: EdgeInsets.symmetric(horizontal: 16),
-                ),
-                icon: Icon(Icons.output, color: AppColors.kWhiteColor),
-                label: Text('Calculate Duration', style: FontUtil.whiteW400S16),
-                onPressed: () {
-                  AgeDuration value = AgeUtil.dateDifference(
-                      fromDate: _fromDate!, toDate: _toDate!);
-                  setState(() {
-                    ageDuration = value;
-                  });
-                  print('>>>>><<<<<$value');
-                  print(AgeDuration);
-                },
               ),
             ),
             SizedBox(
-              height: 30,
+              height: height * .05,
             ),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton.icon(
-                style: ElevatedButton.styleFrom(
-                  elevation: 0,
-                  backgroundColor: AppColors.kBlankMsgBackground,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5)),
-                  padding: EdgeInsets.symmetric(horizontal: 16),
-                ),
-                icon: Icon(Icons.restart_alt, color: AppColors.kNewText),
-                label: Text('Reset all', style: FontUtil.blackW400S16),
-                onPressed: () {
-                  setState(() {
-                    _fromDate = DateTime.now();
-                    _toDate = DateTime.now();
-                    ageDuration?.days = 0;
-                    ageDuration?.months = 0;
-                    ageDuration?.years = 0;
-                  });
-                },
+            Container(
+              decoration: BoxDecoration(
+                color: AppColors.kWhiteColor,
+                borderRadius: BorderRadius.circular(5),
               ),
-            ),*/
+              child: Padding(
+                padding: const EdgeInsets.only(top: 16, bottom: 8),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 2),
+                      child: Container(
+                        height: 30,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                          color: AppColors.kWarningToastBgColor.withOpacity(.7),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset("assets/icons/ic_result.png",
+                                height: 15,
+                                color: AppColors.kBrown.withOpacity(.6)),
+                            const SizedBox(width: 5),
+                            Text('Calculated Result : ',
+                                style: getCustomTextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 15,
+                                    color: AppColors.kBrown)),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 12,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        SizedBox(width: 4),
+                        _buildResultBox(
+                            ageDuration?.years.toString() ?? '0', 'Years'),
+                        _buildResultBox(
+                            ageDuration?.months.toString() ?? '0', 'Months'),
+                        _buildResultBox(
+                            ageDuration?.days.toString() ?? '0', 'Days'),
+                        SizedBox(width: 4),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Spacer(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -284,6 +270,9 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
                   ),
                 ),
               ],
+            ),
+            SizedBox(
+              height: 30,
             )
           ],
         ),
@@ -293,7 +282,7 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
 
   Future<void> selectFromDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
-      keyboardType: TextInputType.datetime,
+      keyboardType: TextInputType.text,
       context: context,
       initialDate: DateTime.now(),
       firstDate: DateTime(1920, 1),
@@ -303,7 +292,7 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
       fieldHintText: 'Month/Day/Year',
       fieldLabelText: 'BirthDate',
       errorInvalidText: 'Please enter a valid date',
-      errorFormatText: 'This is not the correct format',
+      errorFormatText: 'Correct format is Month/Day/Year',
     );
     if (picked != null && picked != selectedFromDate) {
       setState(() {
@@ -315,7 +304,7 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
   Future<void> selectToDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
       context: context,
-      keyboardType: TextInputType.datetime,
+      keyboardType: TextInputType.text,
       initialDate: DateTime.now(),
       firstDate: DateTime(2015, 8),
       lastDate: DateTime(2101),
@@ -324,7 +313,7 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
       fieldHintText: 'Month/Day/Year',
       fieldLabelText: 'Date',
       errorInvalidText: 'Please enter a valid date',
-      errorFormatText: 'This is not the correct format',
+      errorFormatText: 'Correct format is Month/Day/Year',
     );
     if (picked != null && picked != selectedFromDate) {
       setState(() {

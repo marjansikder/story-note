@@ -1,7 +1,6 @@
+import 'package:date_calculator/utils/value_notifier.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import '../utils/value_notifier.dart';
 
 class DefaultProvider with ChangeNotifier {
   int _selectedIndex = 0;

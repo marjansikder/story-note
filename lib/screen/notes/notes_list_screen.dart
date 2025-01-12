@@ -1,6 +1,6 @@
 import 'dart:math';
-
 import 'package:date_calculator/models/notes_model.dart';
+import 'package:date_calculator/utils/blank_page.dart';
 import 'package:date_calculator/utils/colors.dart';
 import 'package:date_calculator/utils/font_util.dart';
 import 'package:date_calculator/utils/text_style.dart';
@@ -79,7 +79,6 @@ class _NotesListScreenState extends State<NotesListScreen> {
             bottom: MediaQuery.of(context).viewInsets.bottom,
           ),
           child: Container(
-            //height: MediaQuery.sizeOf(context).height * .8,
             decoration: const BoxDecoration(
               color: Color(0xFFFFF3CD),
               borderRadius: BorderRadius.only(
@@ -112,8 +111,8 @@ class _NotesListScreenState extends State<NotesListScreen> {
                             controller: _headLineController,
                             maxLines: 1,
                             keyboardType: TextInputType.text,
-                            style: getTextStyle(19, FontWeight.normal,
-                                AppColors.kBrown),
+                            style: getTextStyle(
+                                19, FontWeight.normal, AppColors.kBrown),
                             decoration: InputDecoration(
                               border: const UnderlineInputBorder(
                                 borderSide: BorderSide(color: Colors.red),
@@ -176,7 +175,10 @@ class _NotesListScreenState extends State<NotesListScreen> {
                             onPressed: () {
                               Navigator.pop(context);
                             },
-                            icon: Image.asset('assets/icons/arrow_back.png', height: 15, width: 15, color: AppColors.kWhiteColor),
+                            icon: Image.asset('assets/icons/arrow_back.png',
+                                height: 15,
+                                width: 15,
+                                color: AppColors.kWhiteColor),
                             label: const Text(
                               'Back',
                               style: TextStyle(
@@ -343,6 +345,7 @@ class _NotesListScreenState extends State<NotesListScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var height = MediaQuery.of(context).size.height;
     return Scaffold(
       //backgroundColor: AppColors.kNewBackground.withOpacity(.1),
       //backgroundColor: AppColors.kWarningToastTextColor.withOpacity(.1),
@@ -395,10 +398,28 @@ class _NotesListScreenState extends State<NotesListScreen> {
             ),*/
             Expanded(
               child: searchItem.isEmpty
-                  ? Center(
-                      child: Text(
-                        'Nothing found!',
-                        style: TextStyle(fontSize: 16, color: AppColors.kTextGreyColor),
+                  ? ConstrainedBox(
+                      constraints: BoxConstraints(maxHeight: height * 0.7),
+                      child: BlankPage(
+                        margin: EdgeInsets.only(bottom: 5),
+                        children: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset('assets/icons/note_list.png',
+                                color: AppColors.bottomNavBarIconColor,
+                                scale: 10),
+                            const SizedBox(height: 5),
+                            Text(
+                              "Empty list",
+                              style: getCustomTextStyle(
+                                fontSize: 16,
+                                color: AppColors.bottomNavBarIconColor,
+                                fontWeight: FontWeight.normal,
+                                fontFamily: 'MiSans',
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     )
                   : ListView.builder(
@@ -413,16 +434,23 @@ class _NotesListScreenState extends State<NotesListScreen> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          _showEdit(context, null);
-        },
+      //_showEdit(context, null);
+      floatingActionButton: FloatingActionButton.extended(
+        tooltip: "Create",
+        //backgroundColor: AppColors.selectedBottomNavBarIconColor,
+        backgroundColor: AppColors.kFloatingButtonColor,
         elevation: 5,
-        backgroundColor: AppColors.kWhiteColor,
-        child: Icon(
-          Icons.add,
-          size: 30,
-          color: AppColors.kBrown,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        onPressed: () => _showEdit(context, null),
+        icon: Icon(Icons.add_box_rounded, color: AppColors.kBrown, size: 20),
+        label: Text(
+          "Create",
+          style: getCustomTextStyle(
+            fontSize: 14,
+            color: AppColors.kBrown,
+            fontWeight: FontWeight.w500,
+            fontFamily: 'MiSans',
+          ),
         ),
       ),
     );
@@ -458,8 +486,8 @@ class _NotesListScreenState extends State<NotesListScreen> {
                   Flexible(
                     child: Text(
                       currentItem["title"],
-                      style: getTextStyle(
-                          15, FontWeight.w500, AppColors.kBrown),
+                      style:
+                          getTextStyle(15, FontWeight.w500, AppColors.kBrown),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
