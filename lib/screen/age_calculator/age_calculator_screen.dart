@@ -293,7 +293,7 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
 
   Future<void> selectFromDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
-      keyboardType: TextInputType.datetime,
+      keyboardType: TextInputType.text,
       context: context,
       initialDate: DateTime.now(),
       firstDate: DateTime(1920, 1),
@@ -303,7 +303,7 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
       fieldHintText: 'Month/Day/Year',
       fieldLabelText: 'BirthDate',
       errorInvalidText: 'Please enter a valid date',
-      errorFormatText: 'This is not the correct format',
+      errorFormatText: 'Correct format is Month/Day/Year',
     );
     if (picked != null && picked != selectedFromDate) {
       setState(() {
@@ -315,7 +315,7 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
   Future<void> selectToDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
       context: context,
-      keyboardType: TextInputType.datetime,
+      keyboardType: TextInputType.text,
       initialDate: DateTime.now(),
       firstDate: DateTime(2015, 8),
       lastDate: DateTime(2101),
@@ -324,7 +324,7 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
       fieldHintText: 'Month/Day/Year',
       fieldLabelText: 'Date',
       errorInvalidText: 'Please enter a valid date',
-      errorFormatText: 'This is not the correct format',
+      errorFormatText: 'Correct format is Month/Day/Year',
     );
     if (picked != null && picked != selectedFromDate) {
       setState(() {
