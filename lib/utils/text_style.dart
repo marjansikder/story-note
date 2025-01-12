@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-String FONT_NAME = 'MiSans';
-String FONT_NAME2 = 'arial';
+String mi_sans_font = 'MiSans';
+String arial_font = 'arial';
 
 TextStyle getTextStyle1(double sized, FontWeight? weight, Color? color) {
   return GoogleFonts.hindSiliguri(
@@ -51,7 +51,7 @@ TextStyle getTextStyle(double sized, FontWeight? weight, Color? color) {
     fontWeight: weight ?? FontWeight.normal,
     color: color ?? Colors.black,
     height: 1.5,
-    fontFamily: FONT_NAME
+    fontFamily: mi_sans_font
   );
 }
 
@@ -71,7 +71,7 @@ TextStyle getCustomTextStyle({
     fontWeight: fontWeight,
     color: color,
     height: height,
-    fontFamily: fontFamily.isNotEmpty ? fontFamily : FONT_NAME,
+    fontFamily: fontFamily.isNotEmpty ? fontFamily : mi_sans_font,
     fontStyle: fontStyle,
     decoration: decoration,
     letterSpacing: letterSpacing,
