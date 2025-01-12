@@ -439,7 +439,7 @@ class _NotesListScreenState extends State<NotesListScreen> {
         tooltip: "Create",
         //backgroundColor: AppColors.selectedBottomNavBarIconColor,
         backgroundColor: AppColors.kFloatingButtonColor,
-        elevation: 0,
+        elevation: 5,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         onPressed: () => _showEdit(context, null),
         icon: Icon(Icons.add_box_rounded, color: AppColors.kBrown, size: 20),
