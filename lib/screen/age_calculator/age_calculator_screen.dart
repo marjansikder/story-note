@@ -134,7 +134,7 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
               ),
               child: Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 12.0, vertical: 12),
+                    const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -169,7 +169,7 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
                 child: Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 2),
                       child: Container(
                         height: 30,
                         decoration: BoxDecoration(
