@@ -1,11 +1,10 @@
+import 'package:date_calculator/utils/colors.dart';
+import 'package:date_calculator/utils/font_util.dart';
 import 'package:date_calculator/widgets/app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
-
-import '../../utils/colors.dart';
-import '../../utils/font_util.dart';
 import 'date_calculator.dart';
 
 class CalenderScreen extends ConsumerStatefulWidget {

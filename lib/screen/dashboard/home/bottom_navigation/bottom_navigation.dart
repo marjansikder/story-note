@@ -1,10 +1,8 @@
 import 'dart:io';
-
+import 'package:date_calculator/utils/colors.dart';
 import 'package:date_calculator/utils/text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import '../../../../utils/colors.dart';
 import 'bottom_navigation_item.dart';
 
 class BottomNavBar extends ConsumerStatefulWidget {

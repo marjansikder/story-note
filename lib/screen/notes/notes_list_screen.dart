@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:date_calculator/models/notes_model.dart';
 import 'package:date_calculator/utils/colors.dart';
 import 'package:date_calculator/utils/font_util.dart';
