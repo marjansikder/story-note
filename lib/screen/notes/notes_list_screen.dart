@@ -458,6 +458,11 @@ class _NotesListScreenState extends State<NotesListScreen> {
                       final result = await confirmDialog(context);
                       if (result != null && result) {
                         deleteItem(currentItem['key']);
+                        Fluttertoast.showToast(
+                          msg: 'Deleted!',
+                          gravity: ToastGravity.CENTER,
+                          backgroundColor: AppColors.kGreenColor,
+                        );
                         //deleteNote(index);
                       }
                     },

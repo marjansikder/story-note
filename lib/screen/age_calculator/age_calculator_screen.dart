@@ -142,6 +142,13 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
               decoration: BoxDecoration(
                 color: AppColors.kWhiteColor,
                 borderRadius: BorderRadius.circular(5),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(.1),
+                    offset: Offset(0.0, 1.0), //(x,y)
+                    blurRadius: 6.0,
+                  ),
+                ],
               ),
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
@@ -173,6 +180,13 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
               decoration: BoxDecoration(
                 color: AppColors.kWhiteColor,
                 borderRadius: BorderRadius.circular(5),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(.1),
+                    offset: Offset(0.0, 1.0), //(x,y)
+                    blurRadius: 6.0,
+                  ),
+                ],
               ),
               child: Padding(
                 padding: const EdgeInsets.only(top: 16, bottom: 8),
@@ -226,10 +240,8 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
                   child: ElevatedButton.icon(
                     style: ElevatedButton.styleFrom(
                       elevation: 0,
-                      backgroundColor:
-                          AppColors.kWarningToastBgColor.withOpacity(.7),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5)),
+                      backgroundColor: AppColors.kWarningToastBgColor.withOpacity(.7),
+                      shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(5)),
                       padding: EdgeInsets.symmetric(horizontal: 16),
                     ),
                     icon: Image.asset("assets/icons/ic_refresh.png",
@@ -259,10 +271,8 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
                   child: ElevatedButton.icon(
                     style: ElevatedButton.styleFrom(
                       elevation: 0,
-                      backgroundColor:
-                          AppColors.kDatePickerButtonColor.withOpacity(.7),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5)),
+                      backgroundColor: AppColors.kDatePickerButtonColor.withOpacity(.7),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                       padding: EdgeInsets.symmetric(horizontal: 16),
                     ),
                     icon: Icon(Icons.output, color: AppColors.kBrown, size: 18),

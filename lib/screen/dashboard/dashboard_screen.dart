@@ -68,7 +68,7 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
             NotesListScreen(),
             HolidayCalender(),
             //CalenderScreen(),
-            AgeCalculatorScreen()
+            AgeCalculatorScreen(),
           ],
           onPageChanged: (index) {
             setState(() => _currentIndex = index);

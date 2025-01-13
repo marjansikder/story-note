@@ -2,6 +2,7 @@ import 'package:date_calculator/screen/age_calculator/age_calculator_screen.dart
 import 'package:date_calculator/screen/calender/calendar_screen.dart';
 import 'package:date_calculator/screen/dashboard/dashboard_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/adapters.dart';
 
@@ -11,7 +12,15 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   await Hive.openBox('open_note');
-  runApp(const ProviderScope(child: MyApp()));
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]).then((_) {
+    runApp(
+      const ProviderScope(
+        child: MyApp(),
+      ),
+    );
+  });
 }
 
 final routes = {

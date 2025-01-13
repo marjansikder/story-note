@@ -124,21 +124,23 @@ class _HolidayCalenderState extends State<HolidayCalender> {
     String resultedDate =
         DateFormat("dd/MM/yyyy").format(_selectedDay ?? DateTime.now());
     return Scaffold(
-        backgroundColor: AppColors.kBgColor.withOpacity(.3),
-        appBar: CustomAppBarWithShadow(title: 'Holiday ${_focusedDay.year}'),
-        body: Column(children: [
+      backgroundColor: AppColors.kBgColor.withOpacity(.3),
+      appBar: CustomAppBarWithShadow(title: 'Holiday ${_focusedDay.year}'),
+      body: Column(
+        children: [
           const SizedBox(height: 2),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
             child: Container(
               padding: const EdgeInsets.only(bottom: 4),
               decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5.0),
                 color: AppColors.kWhiteColor,
-                borderRadius: BorderRadius.circular(5),
                 boxShadow: [
                   BoxShadow(
-                    blurRadius: 2,
-                    color: Colors.grey.withOpacity(0.1),
+                    color: Colors.grey.withOpacity(.3),
+                    offset: Offset(0.0, 1.0), //(x,y)
+                    blurRadius: 6.0,
                   ),
                 ],
               ),
@@ -274,7 +276,7 @@ class _HolidayCalenderState extends State<HolidayCalender> {
               ),
             ),
           ),
-          const SizedBox(height: 2.0),
+          const SizedBox(height: 8.0),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
             child: Container(
@@ -298,7 +300,7 @@ class _HolidayCalenderState extends State<HolidayCalender> {
               ),
             ),
           ),
-          const SizedBox(height: 4.0),
+          const SizedBox(height: 10.0),
           Expanded(
             child: ValueListenableBuilder<List<Event>>(
               valueListenable: _selectedEvents,
@@ -353,6 +355,13 @@ class _HolidayCalenderState extends State<HolidayCalender> {
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(5),
                                 color: AppColors.kWarningToastBgColor,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(.3),
+                                    offset: Offset(0.0, 3.0), //(x,y)
+                                    blurRadius: 6.0,
+                                  ),
+                                ],
                               ),
                               child: const Center(
                                 child: Text(
@@ -369,6 +378,8 @@ class _HolidayCalenderState extends State<HolidayCalender> {
                   : const SizedBox.shrink();
             },
           ),
-        ]));
+        ],
+      ),
+    );
   }
 }
