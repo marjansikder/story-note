@@ -244,9 +244,10 @@ class _NotesListScreenState extends State<NotesListScreen> {
                               if (_headLineController.text.isEmpty &&
                                   _descriptionController.text.isEmpty) {
                                 Fluttertoast.showToast(
-                                    msg: 'Empty field!',
-                                    gravity: ToastGravity.CENTER,
-                                    backgroundColor: AppColors.kRedAlert);
+                                  msg: 'Empty field!',
+                                  gravity: ToastGravity.CENTER,
+                                  backgroundColor: AppColors.kRedAlert,
+                                );
                               } else if (itemKey == null) {
                                 createItem({
                                   "title": _headLineController.text,
@@ -336,6 +337,41 @@ class _NotesListScreenState extends State<NotesListScreen> {
     setState(() {
       _items = data.reversed.toList();
       searchItem = _items;
+    });
+  }
+
+  void showCustomToast(
+      BuildContext context, String message, Duration duration) {
+    // Overlay entry for showing toast
+    OverlayEntry overlayEntry = OverlayEntry(
+      builder: (context) => Positioned(
+        top: MediaQuery.of(context).size.height * 0.4,
+        left: MediaQuery.of(context).size.width * 0.1,
+        right: MediaQuery.of(context).size.width * 0.1,
+        child: Material(
+          color: Colors.transparent,
+          child: Container(
+            padding: const EdgeInsets.symmetric(vertical: 5),
+            decoration: BoxDecoration(
+              color: AppColors.kAccept.withOpacity(.9),
+              borderRadius: BorderRadius.circular(15),
+            ),
+            child: Text(
+              message,
+              style: const TextStyle(color: Colors.white, fontSize: 16),
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ),
+      ),
+    );
+
+    // Insert the overlay entry
+    Overlay.of(context).insert(overlayEntry);
+
+    // Remove the overlay entry after the specified duration
+    Future.delayed(duration, () {
+      overlayEntry.remove();
     });
   }
 
@@ -458,12 +494,12 @@ class _NotesListScreenState extends State<NotesListScreen> {
                       final result = await confirmDialog(context);
                       if (result != null && result) {
                         deleteItem(currentItem['key']);
+                        //showCustomToast(context, "Deleted!", const Duration(seconds: 5));
                         Fluttertoast.showToast(
                           msg: 'Deleted!',
                           gravity: ToastGravity.CENTER,
-                          backgroundColor: AppColors.kGreenColor,
+                          backgroundColor: AppColors.kGreenAlert,
                         );
-                        //deleteNote(index);
                       }
                     },
                     icon: Icon(
