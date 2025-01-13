@@ -55,9 +55,10 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
         const SizedBox(height: 8),
         Text(
           label,
-          style: const TextStyle(
+          style: getCustomTextStyle(
             fontSize: 16,
             color: Colors.brown,
+            fontFamily: 'Kohinoor',
           ),
         ),
       ],
@@ -84,7 +85,7 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
           children: [
             Image.asset(
               "assets/icons/ic_pick_date.png",
-              scale: 16,
+              scale: 14,
               color: AppColors.kBrown.withOpacity(.4),
             ),
             const SizedBox(width: 8),
@@ -94,7 +95,11 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
               children: [
                 Text(
                   label,
-                  style: getCustomTextStyle(fontSize: 12, color: AppColors.kTextGreyColor),
+                  style: getCustomTextStyle(
+                    fontSize: 12,
+                    color: AppColors.kTitleTextColor,
+                    fontFamily: 'Kohinoor',
+                  ),
                 ),
                 Text(
                   date,
@@ -118,7 +123,7 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
         DateFormat("dd/MM/yyyy").format(_toDate ?? DateTime.now());
     var height = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: Color(0xFFFFFBED).withOpacity(.5),
+      backgroundColor: AppColors.kBgColor.withOpacity(.5),
       appBar: CustomAppBarWithShadow(title: 'Age Calculator'),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 18),
@@ -133,8 +138,7 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
                 borderRadius: BorderRadius.circular(5),
               ),
               child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
+                padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -169,27 +173,22 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
                 child: Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 2),
-                      child: Container(
-                        height: 30,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
-                          color: AppColors.kWarningToastBgColor.withOpacity(.7),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset("assets/icons/ic_result.png",
-                                height: 15,
-                                color: AppColors.kBrown.withOpacity(.6)),
-                            const SizedBox(width: 5),
-                            Text('Calculated Result : ',
-                                style: getCustomTextStyle(
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 15,
-                                    color: AppColors.kBrown)),
-                          ],
-                        ),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16.0, vertical: 2),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset("assets/icons/ic_result.png",
+                              height: 15,
+                              color: AppColors.kBrown.withOpacity(.4)),
+                          const SizedBox(width: 5),
+                          Text('Calculated Result : ',
+                              style: getCustomTextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontFamily: 'Kohinoor',
+                                  fontSize: 15,
+                                  color: AppColors.kBrown)),
+                        ],
                       ),
                     ),
                     SizedBox(
@@ -229,7 +228,15 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
                     ),
                     icon: Image.asset("assets/icons/ic_refresh.png",
                         height: 14, color: AppColors.kBlackColor),
-                    label: Text('Reset all', style: FontUtil.blackW400S15),
+                    label: Text(
+                      'Reset all',
+                      style: getCustomTextStyle(
+                        color: AppColors.kBlackColor,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 15,
+                        fontFamily: 'Kohinoor',
+                      ),
+                    ),
                     onPressed: () {
                       setState(() {
                         _fromDate = DateTime.now();
@@ -253,19 +260,21 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
                       padding: EdgeInsets.symmetric(horizontal: 16),
                     ),
                     icon: Icon(Icons.output, color: AppColors.kBrown, size: 18),
-                    label: Text('Calculate',
-                        style: TextStyle(
-                            color: AppColors.kBrown,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 15)),
+                    label: Text(
+                      'Calculate',
+                      style: getCustomTextStyle(
+                        color: AppColors.kBrown,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 15,
+                        fontFamily: 'Kohinoor',
+                      ),
+                    ),
                     onPressed: () {
                       AgeDuration value = AgeUtil.dateDifference(
                           fromDate: _fromDate!, toDate: _toDate!);
                       setState(() {
                         ageDuration = value;
                       });
-                      print('>>>>><<<<<$value');
-                      print(AgeDuration);
                     },
                   ),
                 ),

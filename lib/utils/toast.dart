@@ -40,14 +40,14 @@ class Toast {
   void _showToast(String message) {
     fToast.showToast(
       child: _makeToast(message, ToastType.NORMAL),
-      gravity: ToastGravity.TOP,
+      gravity: ToastGravity.CENTER,
     );
   }
 
   void _showSuccessToast(String message) {
     fToast.showToast(
       child: _makeToast(message, ToastType.SUCCESS),
-      gravity: ToastGravity.TOP,
+      gravity: ToastGravity.CENTER,
     );
   }
 

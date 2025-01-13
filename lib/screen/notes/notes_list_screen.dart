@@ -4,8 +4,10 @@ import 'package:date_calculator/utils/blank_page.dart';
 import 'package:date_calculator/utils/colors.dart';
 import 'package:date_calculator/utils/font_util.dart';
 import 'package:date_calculator/utils/text_style.dart';
+import 'package:date_calculator/utils/toast.dart';
 import 'package:date_calculator/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
@@ -107,20 +109,59 @@ class _NotesListScreenState extends State<NotesListScreen> {
                             color: Color(0xFFFFF8E1),
                           ),
                           padding: const EdgeInsets.symmetric(horizontal: 10),
-                          child: TextField(
-                            controller: _headLineController,
-                            maxLines: 1,
-                            keyboardType: TextInputType.text,
-                            style: getTextStyle(
-                                19, FontWeight.normal, AppColors.kBrown),
-                            decoration: InputDecoration(
-                              border: const UnderlineInputBorder(
-                                borderSide: BorderSide(color: Colors.red),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: TextField(
+                                  controller: _headLineController,
+                                  maxLines: 1,
+                                  keyboardType: TextInputType.text,
+                                  style: getCustomTextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.normal,
+                                      color: AppColors.kBrown),
+                                  decoration: InputDecoration(
+                                    focusedBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(color: AppColors.kOrgHeader, width: 1),
+                                    ),
+                                    hintText: 'Title',
+                                    hintStyle: getCustomTextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.normal,
+                                        color: Colors.grey),
+                                  ),
+                                ),
                               ),
-                              hintText: 'Title',
-                              hintStyle: getTextStyle(
-                                  16, FontWeight.normal, Colors.grey),
-                            ),
+                              if (_headLineController.text.isNotEmpty ||
+                                  _descriptionController.text.isNotEmpty) ...[
+                                InkWell(
+                                  onTap: () async {
+                                    String combinedText = _headLineController
+                                            .text.isNotEmpty
+                                        ? '${_headLineController.text}\n${_descriptionController.text}'
+                                        : _descriptionController.text;
+
+                                    Clipboard.setData(
+                                            ClipboardData(text: combinedText))
+                                        .then((value) {
+                                      Fluttertoast.showToast(
+                                        msg: 'All copied!',
+                                        gravity: ToastGravity.CENTER,
+                                        backgroundColor: AppColors.kBlackColor,
+                                      );
+                                    });
+                                  },
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(left: 8.0),
+                                    child:  Image.asset(
+                                      "assets/icons/ic_copy_all.png",
+                                      scale: 24,
+                                      color: AppColors.kGreyButtonColor,
+                                    ),
+                                  ),
+                                )
+                              ]
+                            ],
                           ),
                         ),
                         Container(
@@ -138,12 +179,12 @@ class _NotesListScreenState extends State<NotesListScreen> {
                             keyboardType: TextInputType.multiline,
                             maxLines: null,
                             style: getTextStyle(
-                                16, FontWeight.normal, AppColors.kBlackColor),
+                                15, FontWeight.normal, AppColors.kBlackColor),
                             decoration: InputDecoration(
                               border: InputBorder.none,
                               hintText: 'Type something here',
                               hintStyle: getTextStyle(
-                                  14, FontWeight.normal, Colors.grey),
+                                  13, FontWeight.normal, Colors.grey),
                             ),
                           ),
                         ),
@@ -190,7 +231,6 @@ class _NotesListScreenState extends State<NotesListScreen> {
                           ),
                         ),
                         SizedBox(width: 10),
-                        // Save Button
                         Expanded(
                           child: ElevatedButton.icon(
                             style: ElevatedButton.styleFrom(
@@ -203,7 +243,10 @@ class _NotesListScreenState extends State<NotesListScreen> {
                             onPressed: () async {
                               if (_headLineController.text.isEmpty &&
                                   _descriptionController.text.isEmpty) {
-                                Fluttertoast.showToast(msg: 'Empty field!');
+                                Fluttertoast.showToast(
+                                    msg: 'Empty field!',
+                                    gravity: ToastGravity.CENTER,
+                                    backgroundColor: AppColors.kRedAlert);
                               } else if (itemKey == null) {
                                 createItem({
                                   "title": _headLineController.text,
@@ -347,9 +390,7 @@ class _NotesListScreenState extends State<NotesListScreen> {
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     return Scaffold(
-      //backgroundColor: AppColors.kNewBackground.withOpacity(.1),
-      //backgroundColor: AppColors.kWarningToastTextColor.withOpacity(.1),
-      backgroundColor: Color(0xFFFFFBED).withOpacity(.5),
+      backgroundColor: AppColors.kBgColor.withOpacity(.5),
       appBar: CustomSearchAppBar(
         title: 'NOTES : ${_items.length}',
         searchController: searchController,
@@ -487,22 +528,12 @@ class _NotesListScreenState extends State<NotesListScreen> {
                     child: Text(
                       currentItem["title"],
                       style:
-                          getTextStyle(15, FontWeight.w500, AppColors.kBrown),
+                          getTextStyle(14, FontWeight.w500, AppColors.kBrown),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
                   IconButton(
-                    /*onPressed: () {
-                      showCustomDialogBox(context, 'Please Confirm',
-                          'Want to Delete?', null, null, onConfirm: () async {
-                        deleteItem(currentItem['key']);
-                        Navigator.pop(context);
-                        //SystemNavigator.pop();
-                      }, onCancel: () {
-                        Navigator.pop(context);
-                      });
-                    },*/
                     onPressed: () async {
                       final result = await confirmDialog(context);
                       if (result != null && result) {
@@ -539,7 +570,7 @@ class _NotesListScreenState extends State<NotesListScreen> {
                 child: Text(currentItem["content"].toString(),
                     maxLines: 3,
                     style: getTextStyle(
-                        16, FontWeight.normal, AppColors.kBlackColor)),
+                        15, FontWeight.normal, AppColors.kBlackColor)),
               ),
             ),
             Container(

@@ -91,6 +91,8 @@ class AppColors {
   static const kLightSoilColor = Color(0xFFFFBC25);
   //static const kMoreLightSoilColor = Color(0xFFFFBC25);
   static const kChipBackgroundColor = Color(0xFFE7F0FF);
+  static const kBgColor = Color(0xFFFFFBED);
+  //static const kBgColor = Color(0xFFFAF4EA);
 
   static const kStartCallColor = Color(0xFF00BF8A);
   static const kMoreLightSoilColor = Color(0xFFFFA911);
