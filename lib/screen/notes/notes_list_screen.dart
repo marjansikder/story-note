@@ -424,7 +424,7 @@ class _NotesListScreenState extends State<NotesListScreen> {
         _showEdit(context, currentItem['key']);
       },
       child: Card(
-        elevation: 1,
+        elevation: 3,
         margin: EdgeInsets.only(bottom: 12),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
         child: Column(

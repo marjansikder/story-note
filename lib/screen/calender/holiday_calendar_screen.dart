@@ -121,141 +121,160 @@ class _HolidayCalenderState extends State<HolidayCalender> {
 
   @override
   Widget build(BuildContext context) {
-    String resultedDate = DateFormat("dd/MM/yyyy").format(_selectedDay ?? DateTime.now());
+    String resultedDate =
+        DateFormat("dd/MM/yyyy").format(_selectedDay ?? DateTime.now());
     return Scaffold(
         backgroundColor: AppColors.kBgColor.withOpacity(.3),
         appBar: CustomAppBarWithShadow(title: 'Holiday ${_focusedDay.year}'),
         body: Column(children: [
-          const SizedBox(height: 4),
-          TableCalendar<Event>(
-            locale: 'en_US',
-            headerStyle: HeaderStyle(
-                headerMargin:
-                    EdgeInsets.only(left: 8, right: 8, bottom: 12, top: 8),
-                headerPadding: EdgeInsets.only(left: 8, right: 8),
-                formatButtonVisible: false,
-                titleCentered: true,
-                titleTextStyle:
-                    TextStyle(fontSize: 16, color: AppColors.kBrown),
-                decoration: BoxDecoration(
-                  color: AppColors.kWarningToastBgColor.withOpacity(.7),
-                  borderRadius: BorderRadius.circular(5),
-                )),
-            firstDay: kFirstDay,
-            lastDay: kLastDay,
-            focusedDay: _focusedDay,
-            pageAnimationCurve: Curves.easeInOutCubic,
-            selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
-            calendarFormat: _calendarFormat,
-            eventLoader: _getEventsForDay,
-            startingDayOfWeek: StartingDayOfWeek.sunday,
-            weekendDays: [DateTime.friday, DateTime.saturday],
-            daysOfWeekHeight: 40,
-            daysOfWeekStyle: DaysOfWeekStyle(
-              weekdayStyle: TextStyle(color: AppColors.kBrown),
-              weekendStyle: TextStyle(color: Colors.red),
-            ),
-            holidayPredicate: (day) {
-              return day.weekday == DateTime.friday ||
-                  day.weekday == DateTime.saturday;
-            },
-            calendarStyle: CalendarStyle(
-                markerSize: 0,
-                outsideDaysVisible: false,
-                canMarkersOverflow: false,
-                selectedTextStyle: TextStyle(color: Colors.white),
-                todayDecoration: BoxDecoration(
-                  color: AppColors.kPending.withOpacity(0.6),
-                  shape: BoxShape.circle,
+          const SizedBox(height: 2),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+            child: Container(
+              padding: const EdgeInsets.only(bottom: 4),
+              decoration: BoxDecoration(
+                color: AppColors.kWhiteColor,
+                borderRadius: BorderRadius.circular(5),
+                boxShadow: [
+                  BoxShadow(
+                    blurRadius: 2,
+                    color: Colors.grey.withOpacity(0.1),
+                  ),
+                ],
+              ),
+              child: TableCalendar<Event>(
+                locale: 'en_US',
+                headerStyle: HeaderStyle(
+                    //headerMargin: EdgeInsets.only(left: 8, right: 8, bottom: 12, top: 8),
+                    headerPadding: EdgeInsets.only(left: 8, right: 8),
+                    formatButtonVisible: false,
+                    titleCentered: true,
+                    titleTextStyle:
+                        TextStyle(fontSize: 16, color: AppColors.kBrown),
+                    decoration: BoxDecoration(
+                      color: AppColors.kWarningToastBgColor.withOpacity(.8),
+                      borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(5),
+                        topLeft: Radius.circular(5),
+                      ),
+                    )),
+                firstDay: kFirstDay,
+                lastDay: kLastDay,
+                focusedDay: _focusedDay,
+                pageAnimationCurve: Curves.easeInOutCubic,
+                selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
+                calendarFormat: _calendarFormat,
+                eventLoader: _getEventsForDay,
+                startingDayOfWeek: StartingDayOfWeek.sunday,
+                weekendDays: [DateTime.friday, DateTime.saturday],
+                daysOfWeekHeight: 40,
+                daysOfWeekStyle: DaysOfWeekStyle(
+                  weekdayStyle: TextStyle(color: AppColors.kBrown),
+                  weekendStyle: TextStyle(color: Colors.red),
                 ),
-                defaultDecoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                )),
-            calendarBuilders: CalendarBuilders(
-              markerBuilder: (context, day, events) {
-                if (events.isNotEmpty && day != _selectedDay) {
-                  return Center(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.red.withOpacity(0.4),
-                        shape: BoxShape.circle,
-                      ),
-                      padding: day.day < 10
-                          ? const EdgeInsets.all(16.0)
-                          : const EdgeInsets.all(12.0),
-                      child: Text(
-                        '${day.day}',
-                        style: const TextStyle(color: Colors.red),
-                      ),
+                holidayPredicate: (day) {
+                  return day.weekday == DateTime.friday ||
+                      day.weekday == DateTime.saturday;
+                },
+                calendarStyle: CalendarStyle(
+                    markerSize: 0,
+                    outsideDaysVisible: false,
+                    canMarkersOverflow: false,
+                    selectedTextStyle: TextStyle(color: Colors.white),
+                    todayDecoration: BoxDecoration(
+                      color: AppColors.kPending.withOpacity(0.6),
+                      shape: BoxShape.circle,
                     ),
-                  );
-                }
-                return null;
-              },
-              selectedBuilder: (context, day, focusedDay) {
-                return Center(
-                  child: Container(
-                    decoration: _selectedDay == day
-                        ? BoxDecoration(
-                            //color: AppColors.kPending.withOpacity(0.4),
-                            border: Border.all(color: AppColors.kPending),
-                            shape: BoxShape.circle,
-                          )
-                        : BoxDecoration(
-                            color: AppColors.kPending,
+                    defaultDecoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                    )),
+                calendarBuilders: CalendarBuilders(
+                  markerBuilder: (context, day, events) {
+                    if (events.isNotEmpty && day != _selectedDay) {
+                      return Center(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.red.withOpacity(0.4),
                             shape: BoxShape.circle,
                           ),
-                    padding: day.day < 10
-                        ? const EdgeInsets.all(16.0)
-                        : const EdgeInsets.all(12.0),
-                    child: Text(
-                      '${day.day}',
-                      style: TextStyle(
-                          color: _selectedDay == day
-                              ? AppColors.kPending
-                              : AppColors.kWhiteColor),
-                    ),
-                  ),
-                );
-              },
-              holidayBuilder: (context, day, focusedDay) {
-                if (day.weekday == DateTime.friday ||
-                    day.weekday == DateTime.saturday) {
-                  return Center(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.red.withOpacity(0.1),
-                        shape: BoxShape.circle,
+                          padding: day.day < 10
+                              ? const EdgeInsets.all(16.0)
+                              : const EdgeInsets.all(12.0),
+                          child: Text(
+                            '${day.day}',
+                            style: const TextStyle(color: Colors.red),
+                          ),
+                        ),
+                      );
+                    }
+                    return null;
+                  },
+                  selectedBuilder: (context, day, focusedDay) {
+                    return Center(
+                      child: Container(
+                        decoration: _selectedDay == day
+                            ? BoxDecoration(
+                                //color: AppColors.kPending.withOpacity(0.4),
+                                border: Border.all(color: AppColors.kPending),
+                                shape: BoxShape.circle,
+                              )
+                            : BoxDecoration(
+                                color: AppColors.kPending,
+                                shape: BoxShape.circle,
+                              ),
+                        padding: day.day < 10
+                            ? const EdgeInsets.all(16.0)
+                            : const EdgeInsets.all(12.0),
+                        child: Text(
+                          '${day.day}',
+                          style: TextStyle(
+                              color: _selectedDay == day
+                                  ? AppColors.kPending
+                                  : AppColors.kWhiteColor),
+                        ),
                       ),
-                      padding: day.day < 10
-                          ? EdgeInsets.all(16.0)
-                          : EdgeInsets.all(12.0),
-                      child: Text(
-                        '${day.day}',
-                        style: const TextStyle(color: Colors.red),
-                      ),
-                    ),
-                  );
-                }
-                return null; // Default rendering for other days
-              },
+                    );
+                  },
+                  holidayBuilder: (context, day, focusedDay) {
+                    if (day.weekday == DateTime.friday ||
+                        day.weekday == DateTime.saturday) {
+                      return Center(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.red.withOpacity(0.1),
+                            shape: BoxShape.circle,
+                          ),
+                          padding: day.day < 10
+                              ? EdgeInsets.all(16.0)
+                              : EdgeInsets.all(12.0),
+                          child: Text(
+                            '${day.day}',
+                            style: const TextStyle(color: Colors.red),
+                          ),
+                        ),
+                      );
+                    }
+                    return null; // Default rendering for other days
+                  },
+                ),
+                onDaySelected: _onDaySelected,
+                onFormatChanged: (format) {
+                  if (_calendarFormat != format) {
+                    setState(() {
+                      _calendarFormat = format;
+                    });
+                  }
+                },
+                onPageChanged: (focusedDay) {
+                  setState(() {
+                    _focusedDay = focusedDay;
+                    _showResetButtonNotifier.value = true;
+                  });
+                },
+              ),
             ),
-            onDaySelected: _onDaySelected,
-            onFormatChanged: (format) {
-              if (_calendarFormat != format) {
-                setState(() {
-                  _calendarFormat = format;
-                });
-              }
-            },
-            onPageChanged: (focusedDay) {
-              setState(() {
-                _focusedDay = focusedDay;
-                _showResetButtonNotifier.value = true;
-              });
-            },
           ),
-          const SizedBox(height: 25.0),
+          const SizedBox(height: 2.0),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
             child: Container(
@@ -267,7 +286,8 @@ class _HolidayCalenderState extends State<HolidayCalender> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset("assets/icons/Holiday.png", height: 12, color: AppColors.kBrown.withOpacity(.6)),
+                  Image.asset("assets/icons/Holiday.png",
+                      height: 12, color: AppColors.kBrown.withOpacity(.6)),
                   const SizedBox(width: 5),
                   Text(resultedDate,
                       style: getCustomTextStyle(
@@ -278,7 +298,7 @@ class _HolidayCalenderState extends State<HolidayCalender> {
               ),
             ),
           ),
-          const SizedBox(height: 8.0),
+          const SizedBox(height: 4.0),
           Expanded(
             child: ValueListenableBuilder<List<Event>>(
               valueListenable: _selectedEvents,

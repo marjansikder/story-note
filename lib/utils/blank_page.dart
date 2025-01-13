@@ -16,10 +16,10 @@ class BlankPage extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         color: Colors.white,
-        image: const DecorationImage(
-          image: AssetImage("assets/images/note_list.png"),
+        /*image: const DecorationImage(
+          image: AssetImage("assets/icons/note_list.png"),
           fit: BoxFit.cover,
-        ),
+        ),*/
       ),
       child: children,
     );

@@ -78,6 +78,13 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5),
           color: AppColors.kWarningToastBgColor,
+          boxShadow: [
+            BoxShadow(
+              blurRadius: 2,
+              color: Colors.grey.withOpacity(0.1),
+              offset: const Offset(2, 3.0),
+            ),
+          ],
         ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
