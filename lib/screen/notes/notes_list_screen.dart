@@ -4,7 +4,6 @@ import 'package:date_calculator/utils/blank_page.dart';
 import 'package:date_calculator/utils/colors.dart';
 import 'package:date_calculator/utils/font_util.dart';
 import 'package:date_calculator/utils/text_style.dart';
-import 'package:date_calculator/utils/toast.dart';
 import 'package:date_calculator/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -34,7 +33,6 @@ class _NotesListScreenState extends State<NotesListScreen> {
   void initState() {
     super.initState();
     refreshItems();
-    //filteredNotes = sampleNotes;
     searchItem = _items;
   }
 
@@ -122,7 +120,9 @@ class _NotesListScreenState extends State<NotesListScreen> {
                                       color: AppColors.kBrown),
                                   decoration: InputDecoration(
                                     focusedBorder: UnderlineInputBorder(
-                                      borderSide: BorderSide(color: AppColors.kOrgHeader, width: 1),
+                                      borderSide: BorderSide(
+                                          color: AppColors.kOrgHeader,
+                                          width: 1),
                                     ),
                                     hintText: 'Title',
                                     hintStyle: getCustomTextStyle(
@@ -153,7 +153,7 @@ class _NotesListScreenState extends State<NotesListScreen> {
                                   },
                                   child: Padding(
                                     padding: const EdgeInsets.only(left: 8.0),
-                                    child:  Image.asset(
+                                    child: Image.asset(
                                       "assets/icons/ic_copy_all.png",
                                       scale: 24,
                                       color: AppColors.kGreyButtonColor,
@@ -292,19 +292,16 @@ class _NotesListScreenState extends State<NotesListScreen> {
 
   Future<void> createItem(Map<String, dynamic> newItem) async {
     await _openBox.add(newItem);
-    print('>>>>>>>>>>>${_openBox.length}');
     refreshItems();
   }
 
   Future<void> editItem(int itemKey, Map<String, dynamic> item) async {
     await _openBox.put(itemKey, item);
-    print('>>>>>>>>>>>${_openBox.length}');
     refreshItems();
   }
 
   Future<void> deleteItem(int itemKey) async {
     await _openBox.delete(itemKey);
-    print('>>>>>>>>>>>${_openBox.length}');
     refreshItems();
   }
 
@@ -339,52 +336,8 @@ class _NotesListScreenState extends State<NotesListScreen> {
     setState(() {
       _items = data.reversed.toList();
       searchItem = _items;
-      print('____________${_items.length}');
     });
   }
-
-  ///unused
-/*
-  List<Note> filteredNotes = [];
-  List<Note> sampleNotes = [];
-  void deleteNote(int index) {
-    setState(() {
-      Note note = filteredNotes[index];
-      filteredNotes.removeAt(index);
-      sampleNotes.remove(note);
-    });
-    //db.updateDataBase();
-  }
-
-  void onSearchTextChanged(String searchText) {
-    setState(() {
-      filteredNotes = sampleNotes
-          .where((note) =>
-      note.content.toLowerCase().contains(searchText.toLowerCase()) ||
-          note.title.toLowerCase().contains(searchText.toLowerCase()))
-          .toList();
-    });
-  }
-
-  void doSearch(String enteredValue) {
-    List<Map<String, dynamic>> result = [];
-    if (enteredValue.isEmpty) {
-      result = _items; // Show all items if the search query is empty
-    } else {
-      result = _items.where((note) {
-        final title = note["title"].toString().toLowerCase();
-        final content = note["content"].toString().toLowerCase();
-        final query = enteredValue.toLowerCase();
-
-        return title.contains(query) || content.contains(query);
-      }).toList();
-    }
-
-    setState(() {
-      filteredNotes = result.cast<Note>();
-    });
-  }
-*/
 
   @override
   Widget build(BuildContext context) {
@@ -404,39 +357,6 @@ class _NotesListScreenState extends State<NotesListScreen> {
         padding: const EdgeInsets.only(left: 12, right: 12, top: 12, bottom: 8),
         child: Column(
           children: [
-            /*Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'NOTES : ${_items.length}',
-                  style: TextStyle(fontSize: 30, color: Colors.black),
-                ),
-                IconButton(
-                    onPressed: () {
-                      setState(() {
-                        //filteredNotes = sortNotesByModifiedTime(filteredNotes);
-                      });
-                    },
-                    padding: const EdgeInsets.all(0),
-                    icon: Container(
-                      width: 40,
-                      height: 30,
-                      decoration: BoxDecoration(
-                          color: Colors.grey.shade800.withOpacity(.8),
-                          borderRadius: BorderRadius.circular(5)),
-                      child: const Icon(
-                        Icons.sort,
-                        color: Colors.white,
-                      ),
-                    ))
-              ],
-            ),
-            TextField(
-              onChanged: (value) => doSearch(value),
-              controller: searchController,
-              decoration: const InputDecoration(
-                  suffixIcon: Icon(Icons.search), labelText: 'Search'),
-            ),*/
             Expanded(
               child: searchItem.isEmpty
                   ? ConstrainedBox(

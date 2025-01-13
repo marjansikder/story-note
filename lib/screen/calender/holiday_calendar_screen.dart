@@ -121,11 +121,8 @@ class _HolidayCalenderState extends State<HolidayCalender> {
 
   @override
   Widget build(BuildContext context) {
-    String resultedDate =
-        DateFormat("dd/MM/yyyy").format(_selectedDay ?? DateTime.now());
-    final currentDate = DateTime.now();
+    String resultedDate = DateFormat("dd/MM/yyyy").format(_selectedDay ?? DateTime.now());
     return Scaffold(
-        //backgroundColor: AppColors.kWhiteColor,
         backgroundColor: AppColors.kBgColor.withOpacity(.3),
         appBar: CustomAppBarWithShadow(title: 'Holiday ${_focusedDay.year}'),
         body: Column(children: [

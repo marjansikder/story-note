@@ -1,6 +1,5 @@
 import 'package:date_calculator/utils/age_util.dart';
 import 'package:date_calculator/utils/colors.dart';
-import 'package:date_calculator/utils/font_util.dart';
 import 'package:date_calculator/utils/text_style.dart';
 import 'package:date_calculator/widgets/app_bar.dart';
 import 'package:flutter/material.dart';
