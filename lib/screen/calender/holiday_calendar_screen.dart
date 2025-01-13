@@ -125,8 +125,8 @@ class _HolidayCalenderState extends State<HolidayCalender> {
         DateFormat("dd/MM/yyyy").format(_selectedDay ?? DateTime.now());
     final currentDate = DateTime.now();
     return Scaffold(
-        //backgroundColor: AppColors.kNewBackground.withOpacity(.1),
-        backgroundColor: AppColors.kBgColor.withOpacity(.5),
+        //backgroundColor: AppColors.kWhiteColor,
+        backgroundColor: AppColors.kBgColor.withOpacity(.3),
         appBar: CustomAppBarWithShadow(title: 'Holiday ${_focusedDay.year}'),
         body: Column(children: [
           const SizedBox(height: 4),

@@ -390,7 +390,7 @@ class _NotesListScreenState extends State<NotesListScreen> {
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: AppColors.kBgColor.withOpacity(.5),
+      backgroundColor: AppColors.kBgColor.withOpacity(.3),
       appBar: CustomSearchAppBar(
         title: 'NOTES : ${_items.length}',
         searchController: searchController,

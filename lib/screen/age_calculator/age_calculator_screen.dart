@@ -123,7 +123,7 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
         DateFormat("dd/MM/yyyy").format(_toDate ?? DateTime.now());
     var height = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: AppColors.kBgColor.withOpacity(.5),
+      backgroundColor: AppColors.kBgColor.withOpacity(.3),
       appBar: CustomAppBarWithShadow(title: 'Age Calculator'),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 18),
@@ -180,7 +180,7 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
                         children: [
                           Image.asset("assets/icons/ic_result.png",
                               height: 15,
-                              color: AppColors.kBrown.withOpacity(.4)),
+                              color: AppColors.kBrown.withOpacity(.6)),
                           const SizedBox(width: 5),
                           Text('Calculated Result : ',
                               style: getCustomTextStyle(
