@@ -288,8 +288,7 @@ class _HolidayCalenderState extends State<HolidayCalender> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset("assets/icons/Holiday.png",
-                      height: 12, color: AppColors.kBrown.withOpacity(.6)),
+                  Image.asset("assets/icons/Holiday.png", height: 12, color: AppColors.kBrown.withOpacity(.6)),
                   const SizedBox(width: 5),
                   Text(resultedDate,
                       style: getCustomTextStyle(

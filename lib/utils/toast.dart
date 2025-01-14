@@ -82,12 +82,15 @@ Widget _buildToast(String message, ToastType type, double fontSize) {
       children: [
         const SizedBox(width: 12),
         Flexible(
-          child: Text(
-            message,
-            style: TextStyle(
-                color: _getTextColor(type),
-                fontSize: fontSize,
-                fontWeight: FontWeight.normal),
+          child: Padding(
+            padding: const EdgeInsets.only(right: 8.0),
+            child: Text(
+              message,
+              style: TextStyle(
+                  color: _getTextColor(type),
+                  fontSize: fontSize,
+                  fontWeight: FontWeight.normal),
+            ),
           ),
         ),
       ],

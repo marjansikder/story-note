@@ -35,9 +35,9 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
     return GestureDetector(
       onTap: onPressed,
       child: Container(
-        padding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+        padding: EdgeInsets.only(left: 10, right: 10, top: 6, bottom: 8),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5),
+          borderRadius: BorderRadius.circular(8),
           color: AppColors.kWarningToastBgColor,
           boxShadow: [
             BoxShadow(
@@ -63,15 +63,16 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
                 Text(
                   label,
                   style: getCustomTextStyle(
-                    fontSize: 12,
+                    fontSize: 11,
                     color: AppColors.kTextGreyColor,
-                    fontFamily: 'Kohinoor',
+                    fontFamily: 'Jost',
                   ),
                 ),
                 Text(
                   date,
                   style: getCustomTextStyle(
                     color: AppColors.kBrown.withOpacity(.6),
+                    fontFamily: 'MiSans',
                   ),
                 ),
               ],

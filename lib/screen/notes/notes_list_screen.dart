@@ -144,7 +144,7 @@ class _NotesListScreenState extends State<NotesListScreen> {
                                     Clipboard.setData(
                                             ClipboardData(text: combinedText))
                                         .then((value) {
-                                      Toast.showToast('All copied!');
+                                      Toast.showToast('All copied! ');
                                       /*Fluttertoast.showToast(
                                         msg: 'All copied!',
                                         gravity: ToastGravity.CENTER,
@@ -244,7 +244,7 @@ class _NotesListScreenState extends State<NotesListScreen> {
                             onPressed: () async {
                               if (_headLineController.text.isEmpty &&
                                   _descriptionController.text.isEmpty) {
-                                Toast.showErrorToast('Empty field!');
+                                Toast.showErrorToast('Empty field! ');
                               /*  Fluttertoast.showToast(
                                   msg: 'Empty field!',
                                   gravity: ToastGravity.CENTER,
@@ -380,6 +380,7 @@ class _NotesListScreenState extends State<NotesListScreen> {
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: AppColors.kBgColor.withOpacity(.3),
       appBar: CustomSearchAppBar(
@@ -391,37 +392,36 @@ class _NotesListScreenState extends State<NotesListScreen> {
         searchTextStyle: const TextStyle(color: AppColors.kBrown, fontSize: 16),
         hintTextStyle: const TextStyle(color: Colors.grey, fontSize: 14),
       ),
-      body: Padding(
-        padding: const EdgeInsets.only(left: 12, right: 12, top: 12, bottom: 8),
-        child: Column(
-          children: [
-            Expanded(
-              child: searchItem.isEmpty
-                  ? ConstrainedBox(
-                      constraints: BoxConstraints(maxHeight: height * 0.7),
-                      child: BlankPage(
-                        margin: EdgeInsets.only(bottom: 5),
-                        children: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset('assets/icons/note_list.png',
-                                color: AppColors.bottomNavBarIconColor,
-                                scale: 10),
-                            const SizedBox(height: 5),
-                            Text(
-                              "Empty list",
-                              style: getCustomTextStyle(
-                                fontSize: 16,
-                                color: AppColors.bottomNavBarIconColor,
-                                fontWeight: FontWeight.normal,
-                                fontFamily: 'MiSans',
-                              ),
+      body: Column(
+        children: [
+          Expanded(
+            child: searchItem.isEmpty
+                ? ConstrainedBox(
+                    constraints: BoxConstraints(maxHeight: height * .7),
+                    child: BlankPage(
+                      children: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset('assets/icons/note_list.png',
+                              color: AppColors.bottomNavBarIconColor,
+                              scale: 10),
+                          const SizedBox(height: 5),
+                          Text(
+                            "Empty list",
+                            style: getCustomTextStyle(
+                              fontSize: 16,
+                              color: AppColors.bottomNavBarIconColor,
+                              fontWeight: FontWeight.normal,
+                              fontFamily: 'MiSans',
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-                    )
-                  : ListView.builder(
+                    ),
+                  )
+                : Padding(
+              padding: const EdgeInsets.only(left: 12, right: 12, top: 12, bottom: 8),
+                  child: ListView.builder(
                       padding: const EdgeInsets.only(bottom: 70),
                       itemCount: searchItem.length,
                       itemBuilder: (context, index) {
@@ -429,27 +429,20 @@ class _NotesListScreenState extends State<NotesListScreen> {
                         return noteCardWidget(context, currentItem);
                       },
                     ),
-            ),
-          ],
-        ),
+                ),
+          ),
+        ],
       ),
       //_showEdit(context, null);
-      floatingActionButton: FloatingActionButton.extended(
-        tooltip: "Create",
-        //backgroundColor: AppColors.selectedBottomNavBarIconColor,
-        backgroundColor: AppColors.kFloatingButtonColor,
-        elevation: 5,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        onPressed: () => _showEdit(context, null),
-        icon: Icon(Icons.add_box_rounded, color: AppColors.kBrown, size: 20),
-        label: Text(
-          "Create",
-          style: getCustomTextStyle(
-            fontSize: 14,
-            color: AppColors.kBrown,
-            fontWeight: FontWeight.w500,
-            fontFamily: 'MiSans',
-          ),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(bottom: 4.0),
+        child: FloatingActionButton(
+          tooltip: "Create",
+          backgroundColor: AppColors.kFloatingButtonColor,
+          elevation: 5,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          onPressed: () => _showEdit(context, null),
+          child: Image.asset("assets/icons/ic_add.png", height: 18, color: AppColors.kBrown),
         ),
       ),
     );
@@ -496,7 +489,7 @@ class _NotesListScreenState extends State<NotesListScreen> {
                       final result = await confirmDialog(context);
                       if (result != null && result) {
                         deleteItem(currentItem['key']);
-                        Toast.showSuccessToast('Successfully deleted.');
+                        Toast.showSuccessToast('Successfully deleted!');
                         //showCustomToast(context, "Deleted!", const Duration(seconds: 5));
 
                         /*Fluttertoast.showToast(
