@@ -4,10 +4,10 @@ import 'package:date_calculator/utils/blank_page.dart';
 import 'package:date_calculator/utils/colors.dart';
 import 'package:date_calculator/utils/font_util.dart';
 import 'package:date_calculator/utils/text_style.dart';
+import 'package:date_calculator/utils/toast.dart';
 import 'package:date_calculator/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
 
@@ -144,11 +144,12 @@ class _NotesListScreenState extends State<NotesListScreen> {
                                     Clipboard.setData(
                                             ClipboardData(text: combinedText))
                                         .then((value) {
-                                      Fluttertoast.showToast(
+                                      Toast.showToast('All copied!');
+                                      /*Fluttertoast.showToast(
                                         msg: 'All copied!',
                                         gravity: ToastGravity.CENTER,
                                         backgroundColor: AppColors.kBlackColor,
-                                      );
+                                      );*/
                                     });
                                   },
                                   child: Padding(
@@ -243,11 +244,12 @@ class _NotesListScreenState extends State<NotesListScreen> {
                             onPressed: () async {
                               if (_headLineController.text.isEmpty &&
                                   _descriptionController.text.isEmpty) {
-                                Fluttertoast.showToast(
+                                Toast.showErrorToast('Empty field!');
+                              /*  Fluttertoast.showToast(
                                   msg: 'Empty field!',
                                   gravity: ToastGravity.CENTER,
                                   backgroundColor: AppColors.kRedAlert,
-                                );
+                                );*/
                               } else if (itemKey == null) {
                                 createItem({
                                   "title": _headLineController.text,
@@ -494,12 +496,14 @@ class _NotesListScreenState extends State<NotesListScreen> {
                       final result = await confirmDialog(context);
                       if (result != null && result) {
                         deleteItem(currentItem['key']);
+                        Toast.showSuccessToast('Successfully deleted.');
                         //showCustomToast(context, "Deleted!", const Duration(seconds: 5));
-                        Fluttertoast.showToast(
+
+                        /*Fluttertoast.showToast(
                           msg: 'Deleted!',
                           gravity: ToastGravity.CENTER,
                           backgroundColor: AppColors.kGreenAlert,
-                        );
+                        );*/
                       }
                     },
                     icon: Icon(

@@ -46,23 +46,23 @@ class Toast {
 
   void _showSuccessToast(String message) {
     fToast.showToast(
-      child: _makeToast(message, ToastType.SUCCESS),
-      gravity: ToastGravity.CENTER,
-    );
+        child: _makeToast(message, ToastType.SUCCESS),
+        gravity: ToastGravity.CENTER,
+        toastDuration: Duration(milliseconds: 800));
   }
 
   void _showWaringToast(String message) {
     fToast.showToast(
       child: _makeToast(message, ToastType.WARNING),
-      gravity: ToastGravity.TOP,
+      gravity: ToastGravity.CENTER,
     );
   }
 
   void _showErrorToast(String message) {
     fToast.showToast(
-      child: _makeToast(message, ToastType.ERROR),
-      gravity: ToastGravity.TOP,
-    );
+        child: _makeToast(message, ToastType.ERROR),
+        gravity: ToastGravity.CENTER,
+        toastDuration: Duration(milliseconds: 1000));
   }
 }
 
@@ -72,9 +72,9 @@ Widget _makeToast(String message, ToastType type) {
 
 Widget _buildToast(String message, ToastType type, double fontSize) {
   return Container(
-    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
     decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(10),
+      borderRadius: BorderRadius.circular(25),
       color: _getBackgroundColor(type),
     ),
     child: Row(
@@ -87,7 +87,7 @@ Widget _buildToast(String message, ToastType type, double fontSize) {
             style: TextStyle(
                 color: _getTextColor(type),
                 fontSize: fontSize,
-                fontWeight: FontWeight.bold),
+                fontWeight: FontWeight.normal),
           ),
         ),
       ],
@@ -100,9 +100,9 @@ Color _getTextColor(ToastType type) {
     case ToastType.NORMAL:
       return AppColors.kNormalToastTextColor;
     case ToastType.SUCCESS:
-      return AppColors.kSuccessToastTextColor;
+      return AppColors.kNormalToastTextColor;
     case ToastType.ERROR:
-      return AppColors.kErrorToastTextColor;
+      return AppColors.kNormalToastTextColor;
     case ToastType.WARNING:
       return AppColors.kWarningToastTextColor;
   }
@@ -111,11 +111,11 @@ Color _getTextColor(ToastType type) {
 Color _getBackgroundColor(ToastType type) {
   switch (type) {
     case ToastType.NORMAL:
-      return AppColors.kNormalToastBgColor;
+      return AppColors.kNormalToastBgColor.withOpacity(.9);
     case ToastType.SUCCESS:
-      return AppColors.kSuccessToastBgColor;
+      return AppColors.kGreenAlert.withOpacity(.9);
     case ToastType.ERROR:
-      return AppColors.kErrorToastBgColor;
+      return AppColors.kRedAlert.withOpacity(.9);
     case ToastType.WARNING:
       return AppColors.kWarningToastBgColor;
   }

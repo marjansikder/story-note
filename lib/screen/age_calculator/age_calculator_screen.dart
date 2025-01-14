@@ -25,6 +25,63 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
 
   AgeDuration? ageDuration;
 
+  Widget _buildDateColumn(
+    BuildContext context, {
+    required VoidCallback onPressed,
+    required IconData icon,
+    required String label,
+    required String date,
+  }) {
+    return GestureDetector(
+      onTap: onPressed,
+      child: Container(
+        padding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(5),
+          color: AppColors.kWarningToastBgColor,
+          boxShadow: [
+            BoxShadow(
+              blurRadius: 2,
+              color: Colors.grey.withOpacity(0.1),
+              offset: const Offset(2, 3.0),
+            ),
+          ],
+        ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Image.asset(
+              "assets/icons/ic_pick.png",
+              scale: 14,
+              color: AppColors.kBrown.withOpacity(.4),
+            ),
+            const SizedBox(width: 8),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(
+                  label,
+                  style: getCustomTextStyle(
+                    fontSize: 12,
+                    color: AppColors.kTextGreyColor,
+                    fontFamily: 'Kohinoor',
+                  ),
+                ),
+                Text(
+                  date,
+                  style: getCustomTextStyle(
+                    color: AppColors.kBrown.withOpacity(.6),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   Widget _buildResultBox(String value, String label) {
     return Column(
       children: [
@@ -64,63 +121,6 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
     );
   }
 
-  Widget _buildDateColumn(
-    BuildContext context, {
-    required VoidCallback onPressed,
-    required IconData icon,
-    required String label,
-    required String date,
-  }) {
-    return GestureDetector(
-      onTap: onPressed,
-      child: Container(
-        padding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5),
-          color: AppColors.kWarningToastBgColor,
-          boxShadow: [
-            BoxShadow(
-              blurRadius: 2,
-              color: Colors.grey.withOpacity(0.1),
-              offset: const Offset(2, 3.0),
-            ),
-          ],
-        ),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Image.asset(
-              "assets/icons/ic_pick_date.png",
-              scale: 14,
-              color: AppColors.kBrown.withOpacity(.4),
-            ),
-            const SizedBox(width: 8),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text(
-                  label,
-                  style: getCustomTextStyle(
-                    fontSize: 12,
-                    color: AppColors.kTitleTextColor,
-                    fontFamily: 'Kohinoor',
-                  ),
-                ),
-                Text(
-                  date,
-                  style: getCustomTextStyle(
-                    color: AppColors.kBrown.withOpacity(.6),
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     String selectedFromDate =
@@ -151,7 +151,8 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
                 ],
               ),
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -240,8 +241,10 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
                   child: ElevatedButton.icon(
                     style: ElevatedButton.styleFrom(
                       elevation: 0,
-                      backgroundColor: AppColors.kWarningToastBgColor.withOpacity(.7),
-                      shape: RoundedRectangleBorder( borderRadius: BorderRadius.circular(5)),
+                      backgroundColor:
+                          AppColors.kWarningToastBgColor.withOpacity(.7),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5)),
                       padding: EdgeInsets.symmetric(horizontal: 16),
                     ),
                     icon: Image.asset("assets/icons/ic_refresh.png",
@@ -271,8 +274,10 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
                   child: ElevatedButton.icon(
                     style: ElevatedButton.styleFrom(
                       elevation: 0,
-                      backgroundColor: AppColors.kDatePickerButtonColor.withOpacity(.7),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                      backgroundColor:
+                          AppColors.kDatePickerButtonColor.withOpacity(.7),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5)),
                       padding: EdgeInsets.symmetric(horizontal: 16),
                     ),
                     icon: Icon(Icons.output, color: AppColors.kBrown, size: 18),

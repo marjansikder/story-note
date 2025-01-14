@@ -118,7 +118,7 @@ class AppColors {
   static const kCancel = Color(0xFFEB5463);
   static const kWaiting = Color(0xFF535050);
   static const kStatus = Color(0xFF979797);
-  static const kGreenAlert = Color(0xff037946);
+  static const kGreenAlert = Color(0xff186004);
   static const kRedAlert = Color(0xffEC4615);
   static const kBrown = Color(0xff600404);
 
