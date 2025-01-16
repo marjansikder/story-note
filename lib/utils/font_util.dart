@@ -135,7 +135,7 @@ class FontUtil {
       TextStyle(color: Colors.white, fontWeight: FontWeight.w500, fontSize: 22);
 
   static const appBarTitleTextStyle =
-  TextStyle(color: AppColors.kBrown, fontWeight: FontWeight.w500, fontSize: 22);
+  TextStyle(color: AppColors.kBrown, fontWeight: FontWeight.w500, fontSize: 22, fontFamily: 'Watford');
 
   static const whiteW500S13 =
       TextStyle(color: Colors.white, fontWeight: FontWeight.w500, fontSize: 13);

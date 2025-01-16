@@ -115,9 +115,10 @@ class _NotesListScreenState extends State<NotesListScreen> {
                                   maxLines: 1,
                                   keyboardType: TextInputType.text,
                                   style: getCustomTextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.normal,
-                                      color: AppColors.kBrown),
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.normal,
+                                    color: AppColors.kBrown,
+                                  ),
                                   decoration: InputDecoration(
                                     focusedBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
@@ -245,7 +246,7 @@ class _NotesListScreenState extends State<NotesListScreen> {
                               if (_headLineController.text.isEmpty &&
                                   _descriptionController.text.isEmpty) {
                                 Toast.showErrorToast('Empty field! ');
-                              /*  Fluttertoast.showToast(
+                                /*  Fluttertoast.showToast(
                                   msg: 'Empty field!',
                                   gravity: ToastGravity.CENTER,
                                   backgroundColor: AppColors.kRedAlert,
@@ -420,8 +421,9 @@ class _NotesListScreenState extends State<NotesListScreen> {
                     ),
                   )
                 : Padding(
-              padding: const EdgeInsets.only(left: 12, right: 12, top: 12, bottom: 8),
-                  child: ListView.builder(
+                    padding: const EdgeInsets.only(
+                        left: 12, right: 12, top: 12, bottom: 8),
+                    child: ListView.builder(
                       padding: const EdgeInsets.only(bottom: 70),
                       itemCount: searchItem.length,
                       itemBuilder: (context, index) {
@@ -429,7 +431,7 @@ class _NotesListScreenState extends State<NotesListScreen> {
                         return noteCardWidget(context, currentItem);
                       },
                     ),
-                ),
+                  ),
           ),
         ],
       ),
@@ -440,9 +442,11 @@ class _NotesListScreenState extends State<NotesListScreen> {
           tooltip: "Create",
           backgroundColor: AppColors.kFloatingButtonColor,
           elevation: 5,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           onPressed: () => _showEdit(context, null),
-          child: Image.asset("assets/icons/ic_add.png", height: 18, color: AppColors.kBrown),
+          child: Image.asset("assets/icons/ic_add.png",
+              height: 18, color: AppColors.kBrown),
         ),
       ),
     );
@@ -479,7 +483,7 @@ class _NotesListScreenState extends State<NotesListScreen> {
                     child: Text(
                       currentItem["title"],
                       style:
-                          getTextStyle(14, FontWeight.w500, AppColors.kBrown),
+                          getTextStyle(14, FontWeight.w500, AppColors.kBrown, ),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),

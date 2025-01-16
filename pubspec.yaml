@@ -62,6 +62,16 @@ flutter:
       fonts:
         - asset: assets/font/MiSans_বাংলা.ttf
           style: normal
+
+    - family: Watford
+      fonts:
+        - asset: assets/font/watfard-regular.ttf
+          style: normal
+
+    - family: Alinur
+      fonts:
+        - asset: assets/font/alinur.ttf
+          style: normal
   assets:
     - assets/icons/
     - assets/font/

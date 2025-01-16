@@ -5,6 +5,8 @@ import 'package:google_fonts/google_fonts.dart';
 
 String mi_sans_font = 'MiSans';
 String arial_font = 'arial';
+String watford_font = 'Watford';
+String ali_nur = 'Alinur';
 
 TextStyle getTextStyle1(double sized, FontWeight? weight, Color? color) {
   return GoogleFonts.hindSiliguri(
@@ -48,7 +50,7 @@ TextStyle getTextStyleTab(double sized, FontWeight? weight) {
 TextStyle getTextStyle(double sized, FontWeight? weight, Color? color) {
   return TextStyle(
     fontSize: sized,
-    fontWeight: weight ?? FontWeight.normal,
+    fontWeight: weight ?? FontWeight.w300,
     color: color ?? Colors.black,
     height: 1.5,
     fontFamily: mi_sans_font

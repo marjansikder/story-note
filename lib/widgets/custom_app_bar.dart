@@ -16,9 +16,9 @@ class CustomSearchAppBar extends StatefulWidget implements PreferredSizeWidget {
     required this.searchController,
     required this.onSearchChanged,
     this.backgroundColor = Colors.transparent,
-    this.titleTextStyle = const TextStyle(color: Colors.black, fontSize: 18),
-    this.searchTextStyle = const TextStyle(color: Colors.black, fontSize: 16),
-    this.hintTextStyle = const TextStyle(color: Colors.grey, fontSize: 14),
+    this.titleTextStyle = const TextStyle(color: Colors.black, fontSize: 18, fontFamily: 'Watford'),
+    this.searchTextStyle = const TextStyle(color: Colors.black, fontSize: 16, fontFamily: 'Watford'),
+    this.hintTextStyle = const TextStyle(color: Colors.grey, fontSize: 14, fontFamily: 'Watford'),
   });
 
   @override
