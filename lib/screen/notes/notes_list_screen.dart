@@ -218,10 +218,12 @@ class _NotesListScreenState extends State<NotesListScreen> {
                             onPressed: () {
                               Navigator.pop(context);
                             },
-                            icon: Image.asset('assets/icons/arrow_back.png',
-                                height: 15,
-                                width: 15,
-                                color: AppColors.kWhiteColor),
+                            icon: Image.asset(
+                              'assets/icons/ic_arrow_back.png',
+                              height: 15,
+                              width: 15,
+                              color: AppColors.kWhiteColor,
+                            ),
                             label: const Text(
                               'Back',
                               style: TextStyle(
@@ -267,8 +269,12 @@ class _NotesListScreenState extends State<NotesListScreen> {
                                 Navigator.pop(context);
                               }
                             },
-                            icon: const Icon(Icons.save,
-                                color: Colors.white, size: 16),
+                            icon: Image.asset(
+                              'assets/icons/ic_save.png',
+                              height: 13,
+                              width: 13,
+                              color: AppColors.kWhiteColor,
+                            ),
                             label: const Text(
                               'Save',
                               style: TextStyle(
@@ -482,8 +488,11 @@ class _NotesListScreenState extends State<NotesListScreen> {
                   Flexible(
                     child: Text(
                       currentItem["title"],
-                      style:
-                          getTextStyle(14, FontWeight.w500, AppColors.kBrown, ),
+                      style: getTextStyle(
+                        14,
+                        FontWeight.w500,
+                        AppColors.kBrown,
+                      ),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
