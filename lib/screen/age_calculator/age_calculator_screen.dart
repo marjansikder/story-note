@@ -52,7 +52,7 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
           children: [
             Image.asset(
               "assets/icons/ic_pick.png",
-              scale: 14,
+              scale: 13.5,
               color: AppColors.kBrown.withOpacity(.4),
             ),
             const SizedBox(width: 8),
@@ -65,7 +65,7 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
                   style: getCustomTextStyle(
                     fontSize: 11,
                     color: AppColors.kTextGreyColor,
-                    fontFamily: 'Jost',
+                    fontFamily: 'Watford',
                   ),
                 ),
                 Text(
@@ -152,8 +152,7 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
                 ],
               ),
               child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
+                padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -161,14 +160,14 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
                       onPressed: () => selectFromDate(context),
                       context,
                       icon: Icons.calendar_today_outlined,
-                      label: 'Pick from date',
+                      label: 'PICK FROM DATE',
                       date: selectedFromDate,
                     ),
                     _buildDateColumn(
                       onPressed: () => selectToDate(context),
                       context,
                       icon: Icons.calendar_today_outlined,
-                      label: 'Pick to date',
+                      label: 'PICK TO DATE',
                       date: selectedToDate,
                     ),
                   ],

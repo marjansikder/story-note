@@ -49,19 +49,19 @@ class _CustomSearchAppBarState extends State<CustomSearchAppBar> {
         centerTitle: false,
         title: isSearching
             ? TextField(
-          controller: widget.searchController,
-          onChanged: widget.onSearchChanged,
-          decoration: InputDecoration(
-            hintText: 'Search notes...',
-            hintStyle: widget.hintTextStyle,
-            border: InputBorder.none,
-          ),
-          style: widget.searchTextStyle,
-        )
+                controller: widget.searchController,
+                onChanged: widget.onSearchChanged,
+                decoration: InputDecoration(
+                  hintText: 'Search notes...',
+                  hintStyle: widget.hintTextStyle,
+                  border: InputBorder.none,
+                ),
+                style: widget.searchTextStyle,
+              )
             : Text(
-          widget.title,
-          style: widget.titleTextStyle,
-        ),
+                widget.title,
+                style: widget.titleTextStyle,
+              ),
         backgroundColor: Colors.transparent, // Make AppBar transparent
         elevation: 0, // Disable default shadow
         actions: [

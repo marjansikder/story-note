@@ -1,4 +1,5 @@
 import 'package:date_calculator/screen/age_calculator/age_calculator_screen.dart';
+import 'package:date_calculator/screen/notes/note_pad_screen.dart';
 import 'package:date_calculator/screen/notes/notes_list_screen.dart';
 import 'package:date_calculator/utils/colors.dart';
 import 'package:flutter/material.dart' hide Badge;
@@ -65,7 +66,7 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
           physics: const NeverScrollableScrollPhysics(),
           controller: _pageController,
           children: const [
-            NotesListScreen(),
+            NotesPadScreen(),
             HolidayCalender(),
             //CalenderScreen(),
             AgeCalculatorScreen(),

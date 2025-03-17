@@ -58,8 +58,7 @@ class _NotesListScreenState extends State<NotesListScreen> {
 
   void _showEdit(BuildContext context, int? itemKey) async {
     if (itemKey != null) {
-      final existingItem =
-          _items.firstWhere((element) => element['key'] == itemKey);
+      final existingItem = _items.firstWhere((element) => element['key'] == itemKey);
       _headLineController.text = existingItem['title'];
       _descriptionController.text = existingItem['content'];
     }
@@ -69,8 +68,7 @@ class _NotesListScreenState extends State<NotesListScreen> {
       isScrollControlled: true,
       useSafeArea: true,
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(
-            top: Radius.circular(10.0), bottom: Radius.circular(10.0)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(10.0), bottom: Radius.circular(10.0)),
       ),
       builder: (context) => SafeArea(
         child: Padding(
@@ -92,8 +90,7 @@ class _NotesListScreenState extends State<NotesListScreen> {
                 Padding(
                   padding: const EdgeInsets.only(bottom: 70),
                   child: SingleChildScrollView(
-                    padding: const EdgeInsets.only(
-                        left: 10, right: 10, bottom: 10), // Space for buttons
+                    padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10), // Space for buttons
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -121,30 +118,22 @@ class _NotesListScreenState extends State<NotesListScreen> {
                                   ),
                                   decoration: InputDecoration(
                                     focusedBorder: UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color: AppColors.kOrgHeader,
-                                          width: 1),
+                                      borderSide: BorderSide(color: AppColors.kOrgHeader, width: 1),
                                     ),
                                     hintText: 'Title',
                                     hintStyle: getCustomTextStyle(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.normal,
-                                        color: Colors.grey),
+                                        fontSize: 15, fontWeight: FontWeight.normal, color: Colors.grey),
                                   ),
                                 ),
                               ),
-                              if (_headLineController.text.isNotEmpty ||
-                                  _descriptionController.text.isNotEmpty) ...[
+                              if (_headLineController.text.isNotEmpty || _descriptionController.text.isNotEmpty) ...[
                                 InkWell(
                                   onTap: () async {
-                                    String combinedText = _headLineController
-                                            .text.isNotEmpty
+                                    String combinedText = _headLineController.text.isNotEmpty
                                         ? '${_headLineController.text}\n${_descriptionController.text}'
                                         : _descriptionController.text;
 
-                                    Clipboard.setData(
-                                            ClipboardData(text: combinedText))
-                                        .then((value) {
+                                    Clipboard.setData(ClipboardData(text: combinedText)).then((value) {
                                       Toast.showToast('All copied! ');
                                       /*Fluttertoast.showToast(
                                         msg: 'All copied!',
@@ -174,19 +163,16 @@ class _NotesListScreenState extends State<NotesListScreen> {
                             ),
                             color: Color(0xFFFFF8E1),
                           ),
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 10, vertical: 10),
+                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                           child: TextField(
                             controller: _descriptionController,
                             keyboardType: TextInputType.multiline,
                             maxLines: null,
-                            style: getTextStyle(
-                                15, FontWeight.normal, AppColors.kBlackColor),
+                            style: getTextStyle(15, FontWeight.normal, AppColors.kBlackColor),
                             decoration: InputDecoration(
                               border: InputBorder.none,
                               hintText: 'Type something here',
-                              hintStyle: getTextStyle(
-                                  13, FontWeight.normal, Colors.grey),
+                              hintStyle: getTextStyle(13, FontWeight.normal, Colors.grey),
                             ),
                           ),
                         ),
@@ -245,8 +231,7 @@ class _NotesListScreenState extends State<NotesListScreen> {
                               ),
                             ),
                             onPressed: () async {
-                              if (_headLineController.text.isEmpty &&
-                                  _descriptionController.text.isEmpty) {
+                              if (_headLineController.text.isEmpty && _descriptionController.text.isEmpty) {
                                 Toast.showErrorToast('Empty field! ');
                                 /*  Fluttertoast.showToast(
                                   msg: 'Empty field!',
@@ -329,19 +314,13 @@ class _NotesListScreenState extends State<NotesListScreen> {
 
   getRandomColor() {
     Random random = Random();
-    return randomBackgroundColors[
-        random.nextInt(randomBackgroundColors.length)];
+    return randomBackgroundColors[random.nextInt(randomBackgroundColors.length)];
   }
 
   void refreshItems() {
     final data = _openBox.keys.map((key) {
       final item = _openBox.get(key);
-      return {
-        "key": key,
-        "title": item["title"],
-        "content": item["content"],
-        "noteDate": item["noteDate"]
-      };
+      return {"key": key, "title": item["title"], "content": item["content"], "noteDate": item["noteDate"]};
     }).toList();
     setState(() {
       _items = data.reversed.toList();
@@ -349,8 +328,7 @@ class _NotesListScreenState extends State<NotesListScreen> {
     });
   }
 
-  void showCustomToast(
-      BuildContext context, String message, Duration duration) {
+  void showCustomToast(BuildContext context, String message, Duration duration) {
     // Overlay entry for showing toast
     OverlayEntry overlayEntry = OverlayEntry(
       builder: (context) => Positioned(
@@ -409,9 +387,7 @@ class _NotesListScreenState extends State<NotesListScreen> {
                       children: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Image.asset('assets/icons/note_list.png',
-                              color: AppColors.bottomNavBarIconColor,
-                              scale: 10),
+                          Image.asset('assets/icons/note_list.png', color: AppColors.bottomNavBarIconColor, scale: 10),
                           const SizedBox(height: 5),
                           Text(
                             "Empty list",
@@ -427,8 +403,7 @@ class _NotesListScreenState extends State<NotesListScreen> {
                     ),
                   )
                 : Padding(
-                    padding: const EdgeInsets.only(
-                        left: 12, right: 12, top: 12, bottom: 8),
+                    padding: const EdgeInsets.only(left: 12, right: 12, top: 12, bottom: 8),
                     child: ListView.builder(
                       padding: const EdgeInsets.only(bottom: 70),
                       itemCount: searchItem.length,
@@ -448,18 +423,15 @@ class _NotesListScreenState extends State<NotesListScreen> {
           tooltip: "Create",
           backgroundColor: AppColors.kFloatingButtonColor,
           elevation: 5,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           onPressed: () => _showEdit(context, null),
-          child: Image.asset("assets/icons/ic_add.png",
-              height: 18, color: AppColors.kBrown),
+          child: Image.asset("assets/icons/ic_add.png", height: 18, color: AppColors.kBrown),
         ),
       ),
     );
   }
 
-  GestureDetector noteCardWidget(
-      BuildContext context, Map<String, dynamic> currentItem) {
+  GestureDetector noteCardWidget(BuildContext context, Map<String, dynamic> currentItem) {
     return GestureDetector(
       onTap: () {
         _showEdit(context, currentItem['key']);
@@ -472,7 +444,7 @@ class _NotesListScreenState extends State<NotesListScreen> {
           children: [
             Container(
               padding: const EdgeInsets.only(left: 12),
-              height: MediaQuery.of(context).size.height / 20,
+              height: MediaQuery.of(context).size.height / 30,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
                   topRight: Radius.circular(5.0),
@@ -515,7 +487,7 @@ class _NotesListScreenState extends State<NotesListScreen> {
                     icon: Icon(
                       Icons.delete_outline_rounded,
                       color: AppColors.kCancel,
-                      size: 24,
+                      size: 18,
                     ),
                   ),
                 ],
@@ -536,12 +508,9 @@ class _NotesListScreenState extends State<NotesListScreen> {
                 //color: getRandomColor(),
               ),
               child: Padding(
-                padding: const EdgeInsets.only(
-                    top: 10.0, bottom: 5, left: 10, right: 10),
+                padding: const EdgeInsets.only(top: 10.0, bottom: 5, left: 10, right: 10),
                 child: Text(currentItem["content"].toString(),
-                    maxLines: 3,
-                    style: getTextStyle(
-                        15, FontWeight.normal, AppColors.kBlackColor)),
+                    maxLines: 3, style: getTextStyle(15, FontWeight.normal, AppColors.kBlackColor)),
               ),
             ),
             Container(
@@ -560,8 +529,7 @@ class _NotesListScreenState extends State<NotesListScreen> {
                 alignment: Alignment.center,
                 child: Text(
                   'Edited: ${currentItem["noteDate"]}',
-                  style: getTextStyle(
-                      10, FontWeight.normal, AppColors.tabSelectedColor),
+                  style: getTextStyle(10, FontWeight.normal, AppColors.tabSelectedColor),
                 ),
               ),
             ),
@@ -586,38 +554,34 @@ class _NotesListScreenState extends State<NotesListScreen> {
               'Want to delete this?',
               style: TextStyle(color: Colors.black, fontSize: 16),
             ),
-            content: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  ElevatedButton(
-                      onPressed: () {
-                        Navigator.pop(context, true);
-                      },
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.kRedNoButton),
-                      child: const SizedBox(
-                        width: 60,
-                        child: Text(
-                          'Yes',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(color: AppColors.kWhiteColor),
-                        ),
-                      )),
-                  ElevatedButton(
-                      onPressed: () {
-                        Navigator.pop(context, false);
-                      },
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.kGreenColor),
-                      child: const SizedBox(
-                        width: 60,
-                        child: Text(
-                          'No',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(color: AppColors.kWhiteColor),
-                        ),
-                      )),
-                ]),
+            content: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context, true);
+                  },
+                  style: ElevatedButton.styleFrom(backgroundColor: AppColors.kRedNoButton),
+                  child: const SizedBox(
+                    width: 60,
+                    child: Text(
+                      'Yes',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: AppColors.kWhiteColor),
+                    ),
+                  )),
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context, false);
+                  },
+                  style: ElevatedButton.styleFrom(backgroundColor: AppColors.kGreenColor),
+                  child: const SizedBox(
+                    width: 60,
+                    child: Text(
+                      'No',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: AppColors.kWhiteColor),
+                    ),
+                  )),
+            ]),
           );
         });
   }

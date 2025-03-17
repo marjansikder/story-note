@@ -16,7 +16,7 @@ class Event {
 
 // Example data
 final kToday = DateTime.now();
-final kFirstDay = DateTime(kToday.year, kToday.month, kToday.day);
+final kFirstDay = DateTime(kToday.year, 1, 1);
 final kLastDay = DateTime(kToday.year + 5, kToday.month, kToday.day);
 
 // Sample events
@@ -25,9 +25,7 @@ final kEvents = LinkedHashMap<DateTime, List<Event>>(
   hashCode: (DateTime key) => key.day * 1000000 + key.month * 10000 + key.year,
 )..addAll({
     DateTime(2025, 2, 15): [Event('শবে বরাত', 'Shab e-Barat')],
-    DateTime(2025, 2, 21): [
-      Event('আন্তর্জাতিক মাতৃভাষা দিবস', 'International Mother Language Day')
-    ],
+    DateTime(2025, 2, 21): [Event('আন্তর্জাতিক মাতৃভাষা দিবস', 'International Mother Language Day')],
     DateTime(2025, 3, 26): [Event('স্বাধীনতা দিবস', 'Independence Day')],
     DateTime(2025, 3, 28): [Event('শবে কদর', 'Shab e-Qadr')],
     DateTime(2025, 3, 29): [Event('ঈদুল ফিতরের ছুটি', 'Eid ul-Fitr Holiday')],
@@ -76,8 +74,7 @@ class HolidayCalender extends StatefulWidget {
 
 class _HolidayCalenderState extends State<HolidayCalender> {
   late final ValueNotifier<List<Event>> _selectedEvents;
-  final ValueNotifier<bool> _showResetButtonNotifier =
-      ValueNotifier<bool>(false);
+  final ValueNotifier<bool> _showResetButtonNotifier = ValueNotifier<bool>(false);
 
   CalendarFormat _calendarFormat = CalendarFormat.month;
   DateTime _focusedDay = DateTime.now();
@@ -121,8 +118,7 @@ class _HolidayCalenderState extends State<HolidayCalender> {
 
   @override
   Widget build(BuildContext context) {
-    String resultedDate =
-        DateFormat("dd/MM/yyyy").format(_selectedDay ?? DateTime.now());
+    String resultedDate = DateFormat("dd/MM/yyyy").format(_selectedDay ?? DateTime.now());
     return Scaffold(
       backgroundColor: AppColors.kBgColor.withOpacity(.3),
       appBar: CustomAppBarWithShadow(title: 'Holiday ${_focusedDay.year}'),
@@ -151,8 +147,7 @@ class _HolidayCalenderState extends State<HolidayCalender> {
                     headerPadding: EdgeInsets.only(left: 8, right: 8),
                     formatButtonVisible: false,
                     titleCentered: true,
-                    titleTextStyle:
-                        TextStyle(fontSize: 16, color: AppColors.kBrown),
+                    titleTextStyle: TextStyle(fontSize: 16, color: AppColors.kBrown),
                     decoration: BoxDecoration(
                       color: AppColors.kWarningToastBgColor.withOpacity(.8),
                       borderRadius: BorderRadius.only(
@@ -175,8 +170,7 @@ class _HolidayCalenderState extends State<HolidayCalender> {
                   weekendStyle: TextStyle(color: Colors.red),
                 ),
                 holidayPredicate: (day) {
-                  return day.weekday == DateTime.friday ||
-                      day.weekday == DateTime.saturday;
+                  return day.weekday == DateTime.friday || day.weekday == DateTime.saturday;
                 },
                 calendarStyle: CalendarStyle(
                     markerSize: 0,
@@ -199,9 +193,7 @@ class _HolidayCalenderState extends State<HolidayCalender> {
                             color: Colors.red.withOpacity(0.4),
                             shape: BoxShape.circle,
                           ),
-                          padding: day.day < 10
-                              ? const EdgeInsets.all(16.0)
-                              : const EdgeInsets.all(12.0),
+                          padding: day.day < 10 ? const EdgeInsets.all(16.0) : const EdgeInsets.all(12.0),
                           child: Text(
                             '${day.day}',
                             style: const TextStyle(color: Colors.red),
@@ -224,31 +216,23 @@ class _HolidayCalenderState extends State<HolidayCalender> {
                                 color: AppColors.kPending,
                                 shape: BoxShape.circle,
                               ),
-                        padding: day.day < 10
-                            ? const EdgeInsets.all(16.0)
-                            : const EdgeInsets.all(12.0),
+                        padding: day.day < 10 ? const EdgeInsets.all(16.0) : const EdgeInsets.all(12.0),
                         child: Text(
                           '${day.day}',
-                          style: TextStyle(
-                              color: _selectedDay == day
-                                  ? AppColors.kPending
-                                  : AppColors.kWhiteColor),
+                          style: TextStyle(color: _selectedDay == day ? AppColors.kPending : AppColors.kWhiteColor),
                         ),
                       ),
                     );
                   },
                   holidayBuilder: (context, day, focusedDay) {
-                    if (day.weekday == DateTime.friday ||
-                        day.weekday == DateTime.saturday) {
+                    if (day.weekday == DateTime.friday || day.weekday == DateTime.saturday) {
                       return Center(
                         child: Container(
                           decoration: BoxDecoration(
                             color: Colors.red.withOpacity(0.1),
                             shape: BoxShape.circle,
                           ),
-                          padding: day.day < 10
-                              ? EdgeInsets.all(16.0)
-                              : EdgeInsets.all(12.0),
+                          padding: day.day < 10 ? EdgeInsets.all(16.0) : EdgeInsets.all(12.0),
                           child: Text(
                             '${day.day}',
                             style: const TextStyle(color: Colors.red),
@@ -291,10 +275,7 @@ class _HolidayCalenderState extends State<HolidayCalender> {
                   Image.asset("assets/icons/Holiday.png", height: 12, color: AppColors.kBrown.withOpacity(.6)),
                   const SizedBox(width: 5),
                   Text(resultedDate,
-                      style: getCustomTextStyle(
-                          fontWeight: FontWeight.w400,
-                          fontSize: 12,
-                          color: AppColors.kBrown)),
+                      style: getCustomTextStyle(fontWeight: FontWeight.w400, fontSize: 12, color: AppColors.kBrown)),
                 ],
               ),
             ),
@@ -308,8 +289,7 @@ class _HolidayCalenderState extends State<HolidayCalender> {
                   itemCount: value.length,
                   itemBuilder: (context, index) {
                     return Container(
-                      margin: const EdgeInsets.symmetric(
-                          horizontal: 8.0, vertical: 4.0),
+                      margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
                       padding: const EdgeInsets.all(8.0),
                       decoration: BoxDecoration(
                         color: AppColors.kWarningToastBgColor.withOpacity(.7),
@@ -320,12 +300,8 @@ class _HolidayCalenderState extends State<HolidayCalender> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(value[index].holidayEn,
-                                style: getTextStyle(
-                                    16, FontWeight.normal, Colors.black)),
-                            Text(value[index].holidayBn,
-                                style: getTextStyle(
-                                    14, FontWeight.normal, AppColors.kBrown)),
+                            Text(value[index].holidayEn, style: getTextStyle(16, FontWeight.normal, Colors.black)),
+                            Text(value[index].holidayBn, style: getTextStyle(14, FontWeight.normal, AppColors.kBrown)),
                             SizedBox(height: 6)
                           ],
                         ),
@@ -365,8 +341,7 @@ class _HolidayCalenderState extends State<HolidayCalender> {
                               child: const Center(
                                 child: Text(
                                   'Today',
-                                  style: TextStyle(
-                                      color: AppColors.kBrown, fontSize: 14),
+                                  style: TextStyle(color: AppColors.kBrown, fontSize: 14),
                                 ),
                               ),
                             ),
