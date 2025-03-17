@@ -190,7 +190,7 @@ class _HolidayCalenderState extends State<HolidayCalender> {
                       return Center(
                         child: Container(
                           decoration: BoxDecoration(
-                            color: Colors.red.withOpacity(0.4),
+                            color: Colors.red.withOpacity(0.25),
                             shape: BoxShape.circle,
                           ),
                           padding: day.day < 10 ? const EdgeInsets.all(16.0) : const EdgeInsets.all(12.0),

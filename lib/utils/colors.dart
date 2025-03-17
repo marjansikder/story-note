@@ -100,8 +100,7 @@ class AppColors {
   static const selectedBottomNavBarIconColor = Color(0xFFC19B22);
   static const kSaveButton = Color(0xFF00AB6D);
 
-  static const kFilterPrimary =
-      ColorFilter.mode(kPrimaryColor, BlendMode.srcIn);
+  static const kFilterPrimary = ColorFilter.mode(kPrimaryColor, BlendMode.srcIn);
   static const kFilterButton = ColorFilter.mode(kButtonText, BlendMode.srcIn);
   static const kFilterText = ColorFilter.mode(kTextColor, BlendMode.srcIn);
   static const kFilterHint = ColorFilter.mode(kHintTextColor, BlendMode.srcIn);
