@@ -24,7 +24,7 @@ class CustomAppBarWithShadow extends StatelessWidget
         boxShadow: [
           BoxShadow(
             blurRadius: 2,
-            color: Colors.grey.withOpacity(0.1),
+            color: Colors.grey.withValues(alpha: 0.1),
             offset: const Offset(0, 3.0),
           ),
         ],
@@ -35,7 +35,8 @@ class CustomAppBarWithShadow extends StatelessWidget
         title: Center(
           child: Text(title, style: FontUtil.appBarTitleTextStyle),
         ),
-        backgroundColor: Colors.transparent, // Make the AppBar itself transparent
+        backgroundColor:
+            Colors.transparent, // Make the AppBar itself transparent
         elevation: 0, // Disable the default AppBar shadow
         leading: showBackButton
             ? IconButton(

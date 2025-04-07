@@ -351,6 +351,7 @@ class _NotesPadScreenState extends State<NotesPadScreen> {
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.only(
           topRight: Radius.circular(5),
+          topLeft: Radius.circular(5),
         ),
         color: Color(0xFFF5E6CC),
       ),
@@ -371,9 +372,13 @@ class _NotesPadScreenState extends State<NotesPadScreen> {
               if (confirm == true) {
                 deleteItem(item['key']);
                 Toast.showSuccessToast('Successfully deleted!');
+                //ToastMessage.infoShow('Successfully deleted!');
+                //ToastMessage.infoShowCustom('Successfully deleted!');
               }
             },
-            icon: Icon(Icons.delete_outline_rounded, color: AppColors.kCancel, size: 18),
+            icon: Image.asset(
+              "assets/icons/ic_delete.png",
+            ),
           ),
         ],
       ),
@@ -384,7 +389,7 @@ class _NotesPadScreenState extends State<NotesPadScreen> {
   Widget _buildNoteContent(Map<String, dynamic> item) {
     return Container(
       width: double.infinity,
-      height: MediaQuery.of(context).size.height / 9,
+      height: MediaQuery.of(context).size.height / 10,
       decoration: const BoxDecoration(
         color: Color(0xFFFFF8E1),
       ),
@@ -393,7 +398,7 @@ class _NotesPadScreenState extends State<NotesPadScreen> {
         child: Text(
           item["content"] ?? '',
           maxLines: 3,
-          style: getTextStyle(15, FontWeight.normal, AppColors.kBlackColor),
+          style: getTextStyle(14, FontWeight.normal, AppColors.kBlackColor),
         ),
       ),
     );
@@ -477,35 +482,34 @@ class _NotesPadScreenState extends State<NotesPadScreen> {
           Expanded(
             child: searchItem.isEmpty
                 ? ConstrainedBox(
-              constraints: BoxConstraints(maxHeight: height * .7),
-              child: BlankPage(
-                children: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset('assets/icons/note_list.png',
-                        color: AppColors.bottomNavBarIconColor, scale: 10),
-                    const SizedBox(height: 5),
-                    Text(
-                      "Empty list",
-                      style: getCustomTextStyle(
-                        fontSize: 16,
-                        color: AppColors.bottomNavBarIconColor,
-                        fontWeight: FontWeight.normal,
-                        fontFamily: 'MiSans',
+                    constraints: BoxConstraints(maxHeight: height * .7),
+                    child: BlankPage(
+                      children: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset('assets/icons/note_list.png', color: AppColors.bottomNavBarIconColor, scale: 10),
+                          const SizedBox(height: 5),
+                          Text(
+                            "Empty list",
+                            style: getCustomTextStyle(
+                              fontSize: 16,
+                              color: AppColors.bottomNavBarIconColor,
+                              fontWeight: FontWeight.normal,
+                              fontFamily: 'MiSans',
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                  ],
-                ),
-              ),
-            )
+                  )
                 : Padding(
-              padding: const EdgeInsets.only(left: 12, right: 12, top: 12, bottom: 8),
-              child: ListView.builder(
-                padding: const EdgeInsets.only(bottom: 70),
-                itemCount: searchItem.length,
-                itemBuilder: (context, index) => _buildNoteCard(context, searchItem[index]),
-              ),
-            ),
+                    padding: const EdgeInsets.only(left: 12, right: 12, top: 12, bottom: 8),
+                    child: ListView.builder(
+                      padding: const EdgeInsets.only(bottom: 70),
+                      itemCount: searchItem.length,
+                      itemBuilder: (context, index) => _buildNoteCard(context, searchItem[index]),
+                    ),
+                  ),
           ),
         ],
       ),

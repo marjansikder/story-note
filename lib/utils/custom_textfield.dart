@@ -5,7 +5,7 @@ import 'colors.dart';
 
 class CustomTextFields extends StatelessWidget {
   const CustomTextFields(this._hintText, this._controller, this.textInputType,
-      {this.onTextChange, this.obscureText});
+      {super.key, this.onTextChange, this.obscureText});
   final String _hintText;
   final TextEditingController _controller;
   final TextInputType textInputType;

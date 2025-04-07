@@ -1,6 +1,7 @@
 import 'package:date_calculator/main.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+
 import 'colors.dart';
 
 enum ToastType {
@@ -114,11 +115,11 @@ Color _getTextColor(ToastType type) {
 Color _getBackgroundColor(ToastType type) {
   switch (type) {
     case ToastType.NORMAL:
-      return AppColors.kNormalToastBgColor.withOpacity(.9);
+      return AppColors.kNormalToastBgColor.withValues(alpha: .9);
     case ToastType.SUCCESS:
-      return AppColors.kGreenAlert.withOpacity(.9);
+      return AppColors.kGreenAlert.withValues(alpha: .9);
     case ToastType.ERROR:
-      return AppColors.kRedAlert.withOpacity(.9);
+      return AppColors.kRedAlert.withValues(alpha: .9);
     case ToastType.WARNING:
       return AppColors.kWarningToastBgColor;
   }

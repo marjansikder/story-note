@@ -1,4 +1,5 @@
 import 'dart:math';
+
 import 'package:date_calculator/models/notes_model.dart';
 import 'package:date_calculator/utils/blank_page.dart';
 import 'package:date_calculator/utils/colors.dart';
@@ -365,7 +366,6 @@ class _NotesListScreenState extends State<NotesListScreen> {
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
-    var width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: AppColors.kBgColor.withOpacity(.3),
       appBar: CustomSearchAppBar(
@@ -475,13 +475,6 @@ class _NotesListScreenState extends State<NotesListScreen> {
                       if (result != null && result) {
                         deleteItem(currentItem['key']);
                         Toast.showSuccessToast('Successfully deleted!');
-                        //showCustomToast(context, "Deleted!", const Duration(seconds: 5));
-
-                        /*Fluttertoast.showToast(
-                          msg: 'Deleted!',
-                          gravity: ToastGravity.CENTER,
-                          backgroundColor: AppColors.kGreenAlert,
-                        );*/
                       }
                     },
                     icon: Icon(

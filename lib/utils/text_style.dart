@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-String mi_sans_font = 'MiSans';
+String MI_SANS_FONT = 'MiSans';
+String hind_shiliguri = 'Hind Siliguri';
 String arial_font = 'arial';
 String watford_font = 'Watford';
 String ali_nur = 'Alinur';
+String ali_noor = 'alinoor';
 
 TextStyle getTextStyle1(double sized, FontWeight? weight, Color? color) {
   return GoogleFonts.hindSiliguri(
@@ -49,19 +51,18 @@ TextStyle getTextStyleTab(double sized, FontWeight? weight) {
 
 TextStyle getTextStyle(double sized, FontWeight? weight, Color? color) {
   return TextStyle(
-    fontSize: sized,
-    fontWeight: weight ?? FontWeight.w300,
-    color: color ?? Colors.black,
-    height: 1.5,
-    fontFamily: mi_sans_font
-  );
+      fontSize: sized,
+      fontWeight: weight ?? FontWeight.w300,
+      color: color ?? Colors.black,
+      height: 1.3,
+      fontFamily: MI_SANS_FONT);
 }
 
 TextStyle getCustomTextStyle({
   double fontSize = 14.0,
-  FontWeight fontWeight = FontWeight.normal,
+  FontWeight fontWeight = FontWeight.w300,
   Color color = Colors.black,
-  double height = 1.5,
+  double height = 1.3,
   String fontFamily = 'MiSans',
   FontStyle fontStyle = FontStyle.normal,
   TextDecoration decoration = TextDecoration.none,
@@ -73,7 +74,7 @@ TextStyle getCustomTextStyle({
     fontWeight: fontWeight,
     color: color,
     height: height,
-    fontFamily: fontFamily.isNotEmpty ? fontFamily : mi_sans_font,
+    fontFamily: fontFamily.isNotEmpty ? fontFamily : MI_SANS_FONT,
     fontStyle: fontStyle,
     decoration: decoration,
     letterSpacing: letterSpacing,
@@ -95,8 +96,7 @@ BoxDecoration getBoxDecorations(Color color, double radius) {
 
 class UpperCaseTextFormatter extends TextInputFormatter {
   @override
-  TextEditingValue formatEditUpdate(
-      TextEditingValue oldValue, TextEditingValue newValue) {
+  TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
     return TextEditingValue(
       text: capitalize(newValue.text),
       selection: newValue.selection,
@@ -117,8 +117,8 @@ class Dimen {
   static const double monthTextSize = 11;
 }
 
-void showCustomDialogBox(BuildContext context, String title, String errors,
-    String? leftButtonText, String? rightButtonText,
+void showCustomDialogBox(
+    BuildContext context, String title, String errors, String? leftButtonText, String? rightButtonText,
     {required VoidCallback onConfirm, required VoidCallback onCancel}) {
   showDialog(
     barrierDismissible: false,
@@ -130,8 +130,7 @@ void showCustomDialogBox(BuildContext context, String title, String errors,
           padding: EdgeInsets.all(36),
           child: Material(
             color: Colors.white,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
             child: Padding(
               padding: EdgeInsets.only(top: 15),
               child: Column(
@@ -139,8 +138,7 @@ void showCustomDialogBox(BuildContext context, String title, String errors,
                 children: [
                   Text(
                     title,
-                    style: getTextStyle2(
-                        20, FontWeight.bold, AppColors.tabSelectedColor),
+                    style: getTextStyle2(20, FontWeight.bold, AppColors.tabSelectedColor),
                   ),
                   SizedBox(
                     height: 20,
@@ -169,8 +167,7 @@ void showCustomDialogBox(BuildContext context, String title, String errors,
                               child: Center(
                                   child: Text(
                                 leftButtonText ?? 'Back',
-                                style: getTextStyle2(
-                                    14, FontWeight.bold, Colors.white),
+                                style: getTextStyle2(14, FontWeight.bold, Colors.white),
                               ))),
                         ),
                       ),
@@ -188,8 +185,7 @@ void showCustomDialogBox(BuildContext context, String title, String errors,
                               child: Center(
                                   child: Text(
                                 rightButtonText ?? 'Okay',
-                                style: getTextStyle2(
-                                    14, FontWeight.bold, Colors.white),
+                                style: getTextStyle2(14, FontWeight.bold, Colors.white),
                               ))),
                         ),
                       )

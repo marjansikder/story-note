@@ -1,6 +1,5 @@
 import 'package:date_calculator/screen/age_calculator/age_calculator_screen.dart';
 import 'package:date_calculator/screen/notes/note_pad_screen.dart';
-import 'package:date_calculator/screen/notes/notes_list_screen.dart';
 import 'package:date_calculator/utils/colors.dart';
 import 'package:flutter/material.dart' hide Badge;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -66,8 +65,8 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
           physics: const NeverScrollableScrollPhysics(),
           controller: _pageController,
           children: const [
-            NotesPadScreen(),
             HolidayCalender(),
+            NotesPadScreen(),
             //CalenderScreen(),
             AgeCalculatorScreen(),
           ],
@@ -89,15 +88,18 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
   List<BottomNavBarItem> _buildBottomNavigationItems() {
     return [
       BottomNavBarItem(
-        label: NavigationLabel.notes,
-        //icon: Icon(Icons.event_note_sharp, size: 26, color: AppColors.bottomNavBarIconColor),
-        icon: Image.asset("assets/icons/note_list.png", width: 22 , color: AppColors.bottomNavBarIconColor),
-      ),
-      BottomNavBarItem(
         label: NavigationLabel.holidayCalender,
         //icon: Icon(Icons.calendar_month_outlined, size: 26, color: AppColors.bottomNavBarIconColor),
-        icon: Image.asset("assets/icons/Holiday.png", width: 22, color: AppColors.bottomNavBarIconColor),
+        icon: Image.asset("assets/icons/Holiday.png",
+            width: 22, color: AppColors.bottomNavBarIconColor),
       ),
+      BottomNavBarItem(
+        label: NavigationLabel.notes,
+        //icon: Icon(Icons.event_note_sharp, size: 26, color: AppColors.bottomNavBarIconColor),
+        icon: Image.asset("assets/icons/note_list.png",
+            width: 22, color: AppColors.bottomNavBarIconColor),
+      ),
+
 /*      BottomNavBarItem(
         label: NavigationLabel.calender,
         icon: const Icon(Icons.calendar_month_sharp,
@@ -106,7 +108,8 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
       BottomNavBarItem(
         label: NavigationLabel.age,
         //icon: Icon(Icons.calculate_outlined, size: 26, color: AppColors.bottomNavBarIconColor),
-        icon: Image.asset("assets/icons/age_calculator.png", width: 22, color: AppColors.bottomNavBarIconColor),
+        icon: Image.asset("assets/icons/age_calculator.png",
+            width: 22, color: AppColors.bottomNavBarIconColor),
       ),
     ];
   }
