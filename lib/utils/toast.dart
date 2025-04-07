@@ -1,6 +1,7 @@
 import 'package:date_calculator/main.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+
 import 'colors.dart';
 
 enum ToastType {
@@ -47,7 +48,7 @@ class Toast {
   void _showSuccessToast(String message) {
     fToast.showToast(
         child: _makeToast(message, ToastType.SUCCESS),
-        gravity: ToastGravity.CENTER,
+        gravity: ToastGravity.BOTTOM,
         toastDuration: Duration(milliseconds: 800));
   }
 
@@ -86,10 +87,7 @@ Widget _buildToast(String message, ToastType type, double fontSize) {
             padding: const EdgeInsets.only(right: 8.0),
             child: Text(
               message,
-              style: TextStyle(
-                  color: _getTextColor(type),
-                  fontSize: fontSize,
-                  fontWeight: FontWeight.normal),
+              style: TextStyle(color: _getTextColor(type), fontSize: fontSize, fontWeight: FontWeight.normal),
             ),
           ),
         ),

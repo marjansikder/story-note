@@ -11,8 +11,7 @@ class AgeCalculatorScreen extends ConsumerStatefulWidget {
   static const route = '/age-calculator';
 
   @override
-  ConsumerState<AgeCalculatorScreen> createState() =>
-      _AgeCalculatorScreenState();
+  ConsumerState<AgeCalculatorScreen> createState() => _AgeCalculatorScreenState();
 }
 
 class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
@@ -48,11 +47,11 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
           ],
         ),
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Image.asset(
               "assets/icons/ic_pick.png",
-              scale: 13.5,
+              scale: 14,
               color: AppColors.kBrown.withOpacity(.4),
             ),
             const SizedBox(width: 8),
@@ -124,10 +123,8 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
 
   @override
   Widget build(BuildContext context) {
-    String selectedFromDate =
-        DateFormat("dd/MM/yyyy").format(_fromDate ?? DateTime.now());
-    String selectedToDate =
-        DateFormat("dd/MM/yyyy").format(_toDate ?? DateTime.now());
+    String selectedFromDate = DateFormat("dd/MM/yyyy").format(_fromDate ?? DateTime.now());
+    String selectedToDate = DateFormat("dd/MM/yyyy").format(_toDate ?? DateTime.now());
     var height = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: AppColors.kBgColor.withOpacity(.3),
@@ -160,14 +157,14 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
                       onPressed: () => selectFromDate(context),
                       context,
                       icon: Icons.calendar_today_outlined,
-                      label: 'PICK FROM DATE',
+                      label: 'Pick from date',
                       date: selectedFromDate,
                     ),
                     _buildDateColumn(
                       onPressed: () => selectToDate(context),
                       context,
                       icon: Icons.calendar_today_outlined,
-                      label: 'PICK TO DATE',
+                      label: 'Pick to date',
                       date: selectedToDate,
                     ),
                   ],
@@ -194,14 +191,12 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
                 child: Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 16.0, vertical: 2),
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 2),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Image.asset("assets/icons/ic_result.png",
-                              height: 15,
-                              color: AppColors.kBrown.withOpacity(.6)),
+                              height: 15, color: AppColors.kBrown.withOpacity(.6)),
                           const SizedBox(width: 5),
                           Text('Calculated Result : ',
                               style: getCustomTextStyle(
@@ -219,12 +214,9 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         SizedBox(width: 4),
-                        _buildResultBox(
-                            ageDuration?.years.toString() ?? '0', 'Years'),
-                        _buildResultBox(
-                            ageDuration?.months.toString() ?? '0', 'Months'),
-                        _buildResultBox(
-                            ageDuration?.days.toString() ?? '0', 'Days'),
+                        _buildResultBox(ageDuration?.years.toString() ?? '0', 'Years'),
+                        _buildResultBox(ageDuration?.months.toString() ?? '0', 'Months'),
+                        _buildResultBox(ageDuration?.days.toString() ?? '0', 'Days'),
                         SizedBox(width: 4),
                       ],
                     ),
@@ -241,14 +233,11 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
                   child: ElevatedButton.icon(
                     style: ElevatedButton.styleFrom(
                       elevation: 0,
-                      backgroundColor:
-                          AppColors.kWarningToastBgColor.withOpacity(.7),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5)),
+                      backgroundColor: AppColors.kWarningToastBgColor.withOpacity(.7),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                       padding: EdgeInsets.symmetric(horizontal: 16),
                     ),
-                    icon: Image.asset("assets/icons/ic_refresh.png",
-                        height: 14, color: AppColors.kBlackColor),
+                    icon: Image.asset("assets/icons/ic_refresh.png", height: 14, color: AppColors.kBlackColor),
                     label: Text(
                       'Reset all',
                       style: getCustomTextStyle(
@@ -274,10 +263,8 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
                   child: ElevatedButton.icon(
                     style: ElevatedButton.styleFrom(
                       elevation: 0,
-                      backgroundColor:
-                          AppColors.kDatePickerButtonColor.withOpacity(.7),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5)),
+                      backgroundColor: AppColors.kDatePickerButtonColor.withOpacity(.7),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                       padding: EdgeInsets.symmetric(horizontal: 16),
                     ),
                     icon: Icon(Icons.output, color: AppColors.kBrown, size: 18),
@@ -291,8 +278,7 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
                       ),
                     ),
                     onPressed: () {
-                      AgeDuration value = AgeUtil.dateDifference(
-                          fromDate: _fromDate!, toDate: _toDate!);
+                      AgeDuration value = AgeUtil.dateDifference(fromDate: _fromDate!, toDate: _toDate!);
                       setState(() {
                         ageDuration = value;
                       });

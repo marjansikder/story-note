@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:toastification/toastification.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
 
@@ -35,18 +36,20 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      builder: FToastBuilder(),
-      navigatorKey: navigatorKey,
-      debugShowCheckedModeBanner: false,
-      themeMode: ThemeMode.light,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+    return ToastificationWrapper(
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        builder: FToastBuilder(),
+        navigatorKey: navigatorKey,
+        debugShowCheckedModeBanner: false,
+        themeMode: ThemeMode.light,
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
+        initialRoute: DashboardScreen.route,
+        routes: routes,
       ),
-      initialRoute: DashboardScreen.route,
-      routes: routes,
     );
   }
 }

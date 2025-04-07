@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:date_calculator/utils/colors.dart';
+import 'package:flutter/material.dart';
 
 class CustomSearchAppBar extends StatefulWidget implements PreferredSizeWidget {
   final String title;
@@ -25,20 +25,20 @@ class CustomSearchAppBar extends StatefulWidget implements PreferredSizeWidget {
   Size get preferredSize => Size.fromHeight(AppBar().preferredSize.height);
 
   @override
-  _CustomSearchAppBarState createState() => _CustomSearchAppBarState();
+  CustomSearchAppBarState createState() => CustomSearchAppBarState();
 }
 
-class _CustomSearchAppBarState extends State<CustomSearchAppBar> {
+class CustomSearchAppBarState extends State<CustomSearchAppBar> {
   bool isSearching = false;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: AppColors.appBarColor, // Match the background color
+        color: AppColors.appBarColor,
         boxShadow: [
           BoxShadow(
-            blurRadius: 2, // Match the shadow blur
+            blurRadius: 2,
             color: Colors.grey.withOpacity(0.1), // Match the shadow color
             offset: const Offset(0, 3.0), // Match the shadow offset
           ),
@@ -52,22 +52,21 @@ class _CustomSearchAppBarState extends State<CustomSearchAppBar> {
                 controller: widget.searchController,
                 onChanged: widget.onSearchChanged,
                 decoration: InputDecoration(
-                  hintText: 'Search notes...',
-                  hintStyle: widget.hintTextStyle,
-                  border: InputBorder.none,
-                ),
+                    hintText: 'Search notes...',
+                    hintStyle: widget.hintTextStyle,
+                    border: Theme.of(context).inputDecorationTheme.border),
                 style: widget.searchTextStyle,
               )
             : Text(
                 widget.title,
                 style: widget.titleTextStyle,
               ),
-        backgroundColor: Colors.transparent, // Make AppBar transparent
+        backgroundColor: Colors.transparent,
         elevation: 0, // Disable default shadow
         actions: [
           IconButton(
             icon: Icon(
-              isSearching ? Icons.close : Icons.search,
+              isSearching ? Icons.close : Icons.search_outlined,
               color: AppColors.kBrown,
             ),
             onPressed: () {

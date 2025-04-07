@@ -1,10 +1,11 @@
+import 'dart:collection';
+
 import 'package:date_calculator/utils/colors.dart';
 import 'package:date_calculator/utils/text_style.dart';
 import 'package:date_calculator/widgets/app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
-import 'dart:collection';
 
 /// Event class to represent an event
 class Event {
@@ -190,10 +191,12 @@ class _HolidayCalenderState extends State<HolidayCalender> {
                       return Center(
                         child: Container(
                           decoration: BoxDecoration(
-                            color: Colors.red.withOpacity(0.25),
+                            color: Colors.red.withOpacity(0.13),
                             shape: BoxShape.circle,
                           ),
-                          padding: day.day < 10 ? const EdgeInsets.all(16.0) : const EdgeInsets.all(12.0),
+                          padding: day.day < 10
+                              ? const EdgeInsets.symmetric(horizontal: 16.0, vertical: 14)
+                              : const EdgeInsets.all(12.0),
                           child: Text(
                             '${day.day}',
                             style: const TextStyle(color: Colors.red),
@@ -229,7 +232,7 @@ class _HolidayCalenderState extends State<HolidayCalender> {
                       return Center(
                         child: Container(
                           decoration: BoxDecoration(
-                            color: Colors.red.withOpacity(0.1),
+                            color: Colors.red.withOpacity(0.03),
                             shape: BoxShape.circle,
                           ),
                           padding: day.day < 10 ? EdgeInsets.all(16.0) : EdgeInsets.all(12.0),

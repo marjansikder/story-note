@@ -3,6 +3,7 @@ import 'package:date_calculator/utils/colors.dart';
 import 'package:date_calculator/utils/font_util.dart';
 import 'package:date_calculator/utils/text_style.dart';
 import 'package:date_calculator/utils/toast.dart';
+import 'package:date_calculator/utils/toast_util.dart';
 import 'package:date_calculator/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -351,6 +352,7 @@ class _NotesPadScreenState extends State<NotesPadScreen> {
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.only(
           topRight: Radius.circular(5),
+          topLeft: Radius.circular(5),
         ),
         color: Color(0xFFF5E6CC),
       ),
@@ -370,10 +372,14 @@ class _NotesPadScreenState extends State<NotesPadScreen> {
               final confirm = await confirmDialog(context);
               if (confirm == true) {
                 deleteItem(item['key']);
-                Toast.showSuccessToast('Successfully deleted!');
+                //Toast.showSuccessToast('Successfully deleted!');
+                //ToastMessage.infoShow('Successfully deleted!');
+                ToastMessage.infoShowCustom('Successfully deleted!');
               }
             },
-            icon: Icon(Icons.delete_outline_rounded, color: AppColors.kCancel, size: 18),
+            icon: Image.asset(
+              "assets/icons/ic_delete.png",
+            ),
           ),
         ],
       ),
@@ -477,35 +483,34 @@ class _NotesPadScreenState extends State<NotesPadScreen> {
           Expanded(
             child: searchItem.isEmpty
                 ? ConstrainedBox(
-              constraints: BoxConstraints(maxHeight: height * .7),
-              child: BlankPage(
-                children: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset('assets/icons/note_list.png',
-                        color: AppColors.bottomNavBarIconColor, scale: 10),
-                    const SizedBox(height: 5),
-                    Text(
-                      "Empty list",
-                      style: getCustomTextStyle(
-                        fontSize: 16,
-                        color: AppColors.bottomNavBarIconColor,
-                        fontWeight: FontWeight.normal,
-                        fontFamily: 'MiSans',
+                    constraints: BoxConstraints(maxHeight: height * .7),
+                    child: BlankPage(
+                      children: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset('assets/icons/note_list.png', color: AppColors.bottomNavBarIconColor, scale: 10),
+                          const SizedBox(height: 5),
+                          Text(
+                            "Empty list",
+                            style: getCustomTextStyle(
+                              fontSize: 16,
+                              color: AppColors.bottomNavBarIconColor,
+                              fontWeight: FontWeight.normal,
+                              fontFamily: 'MiSans',
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                  ],
-                ),
-              ),
-            )
+                  )
                 : Padding(
-              padding: const EdgeInsets.only(left: 12, right: 12, top: 12, bottom: 8),
-              child: ListView.builder(
-                padding: const EdgeInsets.only(bottom: 70),
-                itemCount: searchItem.length,
-                itemBuilder: (context, index) => _buildNoteCard(context, searchItem[index]),
-              ),
-            ),
+                    padding: const EdgeInsets.only(left: 12, right: 12, top: 12, bottom: 8),
+                    child: ListView.builder(
+                      padding: const EdgeInsets.only(bottom: 70),
+                      itemCount: searchItem.length,
+                      itemBuilder: (context, index) => _buildNoteCard(context, searchItem[index]),
+                    ),
+                  ),
           ),
         ],
       ),
