@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "11608640547",
+    "project_id": "note-pad-app-fa4c9",
+    "storage_bucket": "note-pad-app-fa4c9.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:11608640547:android:3721f6a240ec471af6b596",
+        "android_client_info": {
+          "package_name": "com.story.note.date_calculator"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "11608640547-8ubb7j8jq2mr4h70na5defse5afrniva.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.story.note.date_calculator",
+            "certificate_hash": "229fc42c2486efdaf30439a1edfbddf6236be13a"
+          }
+        },
+        {
+          "client_id": "11608640547-k969fld08hliomj7sfad7t5tu3t4kfms.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.story.note.date_calculator",
+            "certificate_hash": "bbbd501ced6ff88ab04db429b9b00ce2c28c4f05"
+          }
+        },
+        {
+          "client_id": "11608640547-9jl6j537s57tk8c1ka32achetj9ptms8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAlXTyC6AO4mNzWaG2EHyQgOx6QwFuR5GM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "11608640547-9jl6j537s57tk8c1ka32achetj9ptms8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

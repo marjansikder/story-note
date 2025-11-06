@@ -17,6 +17,7 @@ enum NavigationLabel {
   holidayCalender('Holiday'),
   calender('Calender'),
   age('Age'),
+  settings('Settings'),
   map('Map'),
   profile('Profile');
 

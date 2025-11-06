@@ -1,5 +1,6 @@
 import 'package:date_calculator/screen/age_calculator/age_calculator_screen.dart';
 import 'package:date_calculator/screen/notes/note_pad_screen.dart';
+import 'package:date_calculator/screen/setting/settings_screen.dart';
 import 'package:date_calculator/utils/colors.dart';
 import 'package:flutter/material.dart' hide Badge;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -69,6 +70,7 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
             NotesPadScreen(),
             //CalenderScreen(),
             AgeCalculatorScreen(),
+            SettingsScreen()
           ],
           onPageChanged: (index) {
             setState(() => _currentIndex = index);
@@ -110,6 +112,12 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
         //icon: Icon(Icons.calculate_outlined, size: 26, color: AppColors.bottomNavBarIconColor),
         icon: Image.asset("assets/icons/age_calculator.png",
             width: 22, color: AppColors.bottomNavBarIconColor),
+      ),
+      BottomNavBarItem(
+        label: NavigationLabel.settings,
+        //icon: Icon(Icons.calculate_outlined, size: 26, color: AppColors.bottomNavBarIconColor),
+        icon: Image.asset("assets/icons/setting.png",
+            width: 24, color: AppColors.bottomNavBarIconColor),
       ),
     ];
   }

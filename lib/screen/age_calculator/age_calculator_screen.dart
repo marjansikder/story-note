@@ -11,7 +11,8 @@ class AgeCalculatorScreen extends ConsumerStatefulWidget {
   static const route = '/age-calculator';
 
   @override
-  ConsumerState<AgeCalculatorScreen> createState() => _AgeCalculatorScreenState();
+  ConsumerState<AgeCalculatorScreen> createState() =>
+      _AgeCalculatorScreenState();
 }
 
 class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
@@ -31,7 +32,7 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
     required String label,
     required String date,
   }) {
-    return GestureDetector(
+    return InkWell(
       onTap: onPressed,
       child: Container(
         padding: EdgeInsets.only(left: 10, right: 10, top: 6, bottom: 8),
@@ -41,7 +42,7 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
           boxShadow: [
             BoxShadow(
               blurRadius: 2,
-              color: Colors.grey.withOpacity(0.1),
+              color: Colors.grey.withValues(alpha: 0.1),
               offset: const Offset(2, 3.0),
             ),
           ],
@@ -51,7 +52,7 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
           children: [
             Image.asset(
               "assets/icons/ic_pick.png",
-              scale: 14,
+              scale: 18,
               color: AppColors.kBrown.withOpacity(.4),
             ),
             const SizedBox(width: 8),
@@ -123,8 +124,10 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
 
   @override
   Widget build(BuildContext context) {
-    String selectedFromDate = DateFormat("dd/MM/yyyy").format(_fromDate ?? DateTime.now());
-    String selectedToDate = DateFormat("dd/MM/yyyy").format(_toDate ?? DateTime.now());
+    String selectedFromDate =
+        DateFormat("dd/MM/yyyy").format(_fromDate ?? DateTime.now());
+    String selectedToDate =
+        DateFormat("dd/MM/yyyy").format(_toDate ?? DateTime.now());
     var height = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: AppColors.kBgColor.withOpacity(.3),
@@ -149,30 +152,59 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
                 ],
               ),
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
+                child: Column(
                   children: [
-                    _buildDateColumn(
-                      onPressed: () => selectFromDate(context),
-                      context,
-                      icon: Icons.calendar_today_outlined,
-                      label: 'Pick from date',
-                      date: selectedFromDate,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16.0, vertical: 2),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset("assets/icons/select_date.png",
+                              height: 15,
+                              color: AppColors.kBrown.withValues(alpha: .6)),
+                          const SizedBox(width: 5),
+                          Text('Select Date : ',
+                              style: getCustomTextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontFamily: 'Kohinoor',
+                                  fontSize: 15,
+                                  color: AppColors.kBrown)),
+                        ],
+                      ),
                     ),
-                    _buildDateColumn(
-                      onPressed: () => selectToDate(context),
-                      context,
-                      icon: Icons.calendar_today_outlined,
-                      label: 'Pick to date',
-                      date: selectedToDate,
+                    SizedBox(
+                      height: 12,
+                    ),
+                    Column(
+                      children: [
+                        _buildDateColumn(
+                          onPressed: () => selectFromDate(context),
+                          context,
+                          icon: Icons.calendar_today_outlined,
+                          label: 'Pick from date',
+                          date: selectedFromDate,
+                        ),
+                        SizedBox(
+                          height: 16,
+                        ),
+                        _buildDateColumn(
+                          onPressed: () => selectToDate(context),
+                          context,
+                          icon: Icons.calendar_today_outlined,
+                          label: 'Pick to date',
+                          date: selectedToDate,
+                        ),
+                      ],
                     ),
                   ],
                 ),
               ),
             ),
             SizedBox(
-              height: height * .05,
+              height: 16,
             ),
             Container(
               decoration: BoxDecoration(
@@ -191,12 +223,14 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
                 child: Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 2),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16.0, vertical: 2),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Image.asset("assets/icons/ic_result.png",
-                              height: 15, color: AppColors.kBrown.withOpacity(.6)),
+                              height: 15,
+                              color: AppColors.kBrown.withOpacity(.6)),
                           const SizedBox(width: 5),
                           Text('Calculated Result : ',
                               style: getCustomTextStyle(
@@ -214,9 +248,12 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         SizedBox(width: 4),
-                        _buildResultBox(ageDuration?.years.toString() ?? '0', 'Years'),
-                        _buildResultBox(ageDuration?.months.toString() ?? '0', 'Months'),
-                        _buildResultBox(ageDuration?.days.toString() ?? '0', 'Days'),
+                        _buildResultBox(
+                            ageDuration?.years.toString() ?? '0', 'Years'),
+                        _buildResultBox(
+                            ageDuration?.months.toString() ?? '0', 'Months'),
+                        _buildResultBox(
+                            ageDuration?.days.toString() ?? '0', 'Days'),
                         SizedBox(width: 4),
                       ],
                     ),
@@ -233,11 +270,14 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
                   child: ElevatedButton.icon(
                     style: ElevatedButton.styleFrom(
                       elevation: 0,
-                      backgroundColor: AppColors.kWarningToastBgColor.withOpacity(.7),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                      backgroundColor:
+                          AppColors.kWarningToastBgColor.withOpacity(.7),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5)),
                       padding: EdgeInsets.symmetric(horizontal: 16),
                     ),
-                    icon: Image.asset("assets/icons/ic_refresh.png", height: 14, color: AppColors.kBlackColor),
+                    icon: Image.asset("assets/icons/ic_refresh.png",
+                        height: 14, color: AppColors.kBlackColor),
                     label: Text(
                       'Reset all',
                       style: getCustomTextStyle(
@@ -263,8 +303,10 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
                   child: ElevatedButton.icon(
                     style: ElevatedButton.styleFrom(
                       elevation: 0,
-                      backgroundColor: AppColors.kDatePickerButtonColor.withOpacity(.7),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                      backgroundColor:
+                          AppColors.kDatePickerButtonColor.withOpacity(.7),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5)),
                       padding: EdgeInsets.symmetric(horizontal: 16),
                     ),
                     icon: Icon(Icons.output, color: AppColors.kBrown, size: 18),
@@ -278,7 +320,8 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
                       ),
                     ),
                     onPressed: () {
-                      AgeDuration value = AgeUtil.dateDifference(fromDate: _fromDate!, toDate: _toDate!);
+                      AgeDuration value = AgeUtil.dateDifference(
+                          fromDate: _fromDate!, toDate: _toDate!);
                       setState(() {
                         ageDuration = value;
                       });
@@ -298,18 +341,39 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
 
   Future<void> selectFromDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
-      keyboardType: TextInputType.text,
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(1920, 1),
-      lastDate: DateTime(2101),
-      cancelText: 'Close',
-      confirmText: 'Select',
-      fieldHintText: 'Month/Day/Year',
-      fieldLabelText: 'BirthDate',
-      errorInvalidText: 'Please enter a valid date',
-      errorFormatText: 'Correct format is Month/Day/Year',
-    );
+        keyboardType: TextInputType.text,
+        context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime(1920, 1),
+        lastDate: DateTime(2101),
+        cancelText: 'Cancel',
+        confirmText: 'Ok',
+        fieldHintText: 'Month/Day/Year',
+        fieldLabelText: 'BirthDate',
+        errorInvalidText: 'Please enter a valid date',
+        errorFormatText: 'Correct format is Month/Day/Year',
+        builder: (context, child) {
+          return Theme(
+            data: ThemeData.dark().copyWith(
+                colorScheme: const ColorScheme.light(
+                    primary: AppColors.kWarningToastTextColor),
+                textButtonTheme: TextButtonThemeData(
+                    style: TextButton.styleFrom(
+                        foregroundColor: AppColors.kBlackColor,
+                        textStyle: const TextStyle(
+                          color: AppColors.kBlackColor,
+                          fontWeight: FontWeight.normal,
+                          fontSize: 14,
+                        ),
+                        shape: RoundedRectangleBorder(
+                            side: const BorderSide(
+                                color: Colors.transparent,
+                                width: 1,
+                                style: BorderStyle.solid),
+                            borderRadius: BorderRadius.circular(50))))),
+            child: child!,
+          );
+        });
     if (picked != null && picked != selectedFromDate) {
       setState(() {
         _fromDate = picked;
@@ -319,18 +383,39 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
 
   Future<void> selectToDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
-      context: context,
-      keyboardType: TextInputType.text,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(2015, 8),
-      lastDate: DateTime(2101),
-      cancelText: 'Close',
-      confirmText: 'Select',
-      fieldHintText: 'Month/Day/Year',
-      fieldLabelText: 'Date',
-      errorInvalidText: 'Please enter a valid date',
-      errorFormatText: 'Correct format is Month/Day/Year',
-    );
+        context: context,
+        keyboardType: TextInputType.text,
+        initialDate: DateTime.now(),
+        firstDate: DateTime(2015, 8),
+        lastDate: DateTime(2101),
+        cancelText: 'Cancel',
+        confirmText: 'Ok',
+        fieldHintText: 'Month/Day/Year',
+        fieldLabelText: 'Date',
+        errorInvalidText: 'Please enter a valid date',
+        errorFormatText: 'Correct format is Month/Day/Year',
+        builder: (context, child) {
+          return Theme(
+            data: ThemeData.dark().copyWith(
+                colorScheme: const ColorScheme.light(
+                    primary: AppColors.kWarningToastTextColor),
+                textButtonTheme: TextButtonThemeData(
+                    style: TextButton.styleFrom(
+                        foregroundColor: AppColors.kBlackColor,
+                        textStyle: const TextStyle(
+                          color: AppColors.kBlackColor,
+                          fontWeight: FontWeight.normal,
+                          fontSize: 14,
+                        ),
+                        shape: RoundedRectangleBorder(
+                            side: const BorderSide(
+                                color: Colors.transparent,
+                                width: 1,
+                                style: BorderStyle.solid),
+                            borderRadius: BorderRadius.circular(50))))),
+            child: child!,
+          );
+        });
     if (picked != null && picked != selectedFromDate) {
       setState(() {
         _toDate = picked;

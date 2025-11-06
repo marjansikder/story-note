@@ -18,15 +18,18 @@ class Event {
 // Example data
 final kToday = DateTime.now();
 final kFirstDay = DateTime(kToday.year, 1, 1);
-final kLastDay = DateTime(kToday.year + 5, kToday.month, kToday.day);
+final kLastDay = DateTime(2026, 12, 31);
 
 // Sample events
 final kEvents = LinkedHashMap<DateTime, List<Event>>(
   equals: isSameDay,
   hashCode: (DateTime key) => key.day * 1000000 + key.month * 10000 + key.year,
 )..addAll({
+    /// YEAR : 2025
     DateTime(2025, 2, 15): [Event('শবে বরাত', 'Shab e-Barat')],
-    DateTime(2025, 2, 21): [Event('আন্তর্জাতিক মাতৃভাষা দিবস', 'International Mother Language Day')],
+    DateTime(2025, 2, 21): [
+      Event('আন্তর্জাতিক মাতৃভাষা দিবস', 'International Mother Language Day')
+    ],
     DateTime(2025, 3, 26): [Event('স্বাধীনতা দিবস', 'Independence Day')],
     DateTime(2025, 3, 28): [Event('শবে কদর', 'Shab e-Qadr')],
     DateTime(2025, 3, 29): [Event('ঈদুল ফিতরের ছুটি', 'Eid ul-Fitr Holiday')],
@@ -49,9 +52,47 @@ final kEvents = LinkedHashMap<DateTime, List<Event>>(
     DateTime(2025, 10, 2): [Event('দুর্গাপূজা', 'Durga Puja')],
     DateTime(2025, 12, 16): [Event('বিজয় দিবস', 'Victory Day')],
     DateTime(2025, 12, 25): [Event('বড়দিন', 'Christmas Day')],
+
+    /// YEAR : 2026
+    DateTime(2026, 2, 21): [
+      Event('আন্তর্জাতিক মাতৃভাষা দিবস', 'International Mother Language Day')
+    ],
+    DateTime(2026, 3, 19): [Event('ঈদুল ফিতরের ছুটি', 'Eid-ul-Fitr Holiday')],
+    DateTime(2026, 3, 20): [Event('ঈদুল ফিতরের ছুটি', 'Eid-ul-Fitr Holiday')],
+    DateTime(2026, 3, 22): [Event('ঈদুল ফিতরের ছুটি', 'Eid-ul-Fitr Holiday')],
+    DateTime(2026, 3, 23): [Event('ঈদুল ফিতরের ছুটি', 'Eid-ul-Fitr Holiday')],
+    DateTime(2026, 3, 26): [
+      Event('স্বাধীনতা ও জাতীয় দিবস', 'Independence Day')
+    ],
+    DateTime(2026, 4, 14): [Event('পহেলা বৈশাখ', 'Bangla New Year')],
+    DateTime(2026, 5, 1): [Event('মে দিবস', 'May Day')],
+    DateTime(2026, 5, 11): [Event('বুদ্ধ পূর্ণিমা', 'Buddha Purnima')],
+    DateTime(2026, 3, 20): [Event('জুমাতুল বিদা', 'Jumatul Bida')],
+    DateTime(2026, 3, 21): [Event('ঈদুল ফিতর', 'Eid ul-Fitr')],
+    DateTime(2026, 2, 4): [Event('শবে বরাত', 'Shab-e-Barat')],
+    DateTime(2026, 3, 17): [Event('শবে কদর', 'Shab-e-Qadr')],
+    DateTime(2026, 5, 26): [Event('ঈদুল আযহার ছুটি', 'Eid-ul-Adha Holiday')],
+    DateTime(2026, 5, 27): [Event('ঈদুল আযহার ছুটি', 'Eid-ul-Adha Holiday')],
+    DateTime(2026, 5, 28): [Event('ঈদুল আযহা', 'Eid ul-Adha')],
+    DateTime(2026, 5, 29): [Event('ঈদুল আযহার ছুটি', 'Eid-ul-Adha Holiday')],
+    DateTime(2026, 5, 30): [Event('ঈদুল আযহার ছুটি', 'Eid-ul-Adha Holiday')],
+    DateTime(2026, 5, 31): [Event('ঈদুল আযহার ছুটি', 'Eid-ul-Adha Holiday')],
+    DateTime(2026, 6, 26): [Event('আশুরা', 'Ashura')],
+    DateTime(2026, 8, 5): [Event('গণঅভ্যুত্থান দিবস', 'Mass Uprising Day')],
+    DateTime(2026, 8, 26): [
+      Event('ঈদে মিলাদুন্নবী (সা.)', 'Eid-e-Milad-un-Nabi')
+    ],
+    DateTime(2026, 9, 4): [Event('জন্মাষ্টমী', 'Janmashtami')],
+    DateTime(2026, 10, 20): [
+      Event('দুর্গাপূজা - মহানবমী', 'Durga Puja (Mahanabami)')
+    ],
+    DateTime(2026, 10, 21): [
+      Event('দুর্গা পূজা - বিজয়া দশমী', 'Durga Puja (Bijoya Dashami)')
+    ],
+    DateTime(2026, 12, 16): [Event('বিজয় দিবস', 'Victory Day')],
+    DateTime(2026, 12, 25): [Event('বড়দিন', 'Christmas Day')],
   });
 
-/// Helper to get the range of days
 List<DateTime> daysInRange(DateTime start, DateTime end) {
   final days = <DateTime>[];
   for (int i = 0; start.add(Duration(days: i)).isBefore(end); i++) {
@@ -75,7 +116,8 @@ class HolidayCalender extends StatefulWidget {
 
 class _HolidayCalenderState extends State<HolidayCalender> {
   late final ValueNotifier<List<Event>> _selectedEvents;
-  final ValueNotifier<bool> _showResetButtonNotifier = ValueNotifier<bool>(false);
+  final ValueNotifier<bool> _showResetButtonNotifier =
+      ValueNotifier<bool>(false);
 
   CalendarFormat _calendarFormat = CalendarFormat.month;
   DateTime _focusedDay = DateTime.now();
@@ -119,7 +161,8 @@ class _HolidayCalenderState extends State<HolidayCalender> {
 
   @override
   Widget build(BuildContext context) {
-    String resultedDate = DateFormat("dd/MM/yyyy").format(_selectedDay ?? DateTime.now());
+    String resultedDate =
+        DateFormat("dd/MM/yyyy").format(_selectedDay ?? DateTime.now());
     return Scaffold(
       backgroundColor: AppColors.kBgColor.withOpacity(.3),
       appBar: CustomAppBarWithShadow(title: 'Holiday ${_focusedDay.year}'),
@@ -148,7 +191,8 @@ class _HolidayCalenderState extends State<HolidayCalender> {
                     headerPadding: EdgeInsets.only(left: 8, right: 8),
                     formatButtonVisible: false,
                     titleCentered: true,
-                    titleTextStyle: TextStyle(fontSize: 16, color: AppColors.kBrown),
+                    titleTextStyle:
+                        TextStyle(fontSize: 16, color: AppColors.kBrown),
                     decoration: BoxDecoration(
                       color: AppColors.kWarningToastBgColor.withOpacity(.8),
                       borderRadius: BorderRadius.only(
@@ -171,7 +215,8 @@ class _HolidayCalenderState extends State<HolidayCalender> {
                   weekendStyle: TextStyle(color: Colors.red),
                 ),
                 holidayPredicate: (day) {
-                  return day.weekday == DateTime.friday || day.weekday == DateTime.saturday;
+                  return day.weekday == DateTime.friday ||
+                      day.weekday == DateTime.saturday;
                 },
                 calendarStyle: CalendarStyle(
                     markerSize: 0,
@@ -195,7 +240,8 @@ class _HolidayCalenderState extends State<HolidayCalender> {
                             shape: BoxShape.circle,
                           ),
                           padding: day.day < 10
-                              ? const EdgeInsets.symmetric(horizontal: 16.0, vertical: 14)
+                              ? const EdgeInsets.symmetric(
+                                  horizontal: 16.0, vertical: 14)
                               : const EdgeInsets.all(12.0),
                           child: Text(
                             '${day.day}',
@@ -219,23 +265,31 @@ class _HolidayCalenderState extends State<HolidayCalender> {
                                 color: AppColors.kPending,
                                 shape: BoxShape.circle,
                               ),
-                        padding: day.day < 10 ? const EdgeInsets.all(16.0) : const EdgeInsets.all(12.0),
+                        padding: day.day < 10
+                            ? const EdgeInsets.all(16.0)
+                            : const EdgeInsets.all(12.0),
                         child: Text(
                           '${day.day}',
-                          style: TextStyle(color: _selectedDay == day ? AppColors.kPending : AppColors.kWhiteColor),
+                          style: TextStyle(
+                              color: _selectedDay == day
+                                  ? AppColors.kPending
+                                  : AppColors.kWhiteColor),
                         ),
                       ),
                     );
                   },
                   holidayBuilder: (context, day, focusedDay) {
-                    if (day.weekday == DateTime.friday || day.weekday == DateTime.saturday) {
+                    if (day.weekday == DateTime.friday ||
+                        day.weekday == DateTime.saturday) {
                       return Center(
                         child: Container(
                           decoration: BoxDecoration(
                             color: Colors.red.withOpacity(0.03),
                             shape: BoxShape.circle,
                           ),
-                          padding: day.day < 10 ? EdgeInsets.all(16.0) : EdgeInsets.all(12.0),
+                          padding: day.day < 10
+                              ? EdgeInsets.all(16.0)
+                              : EdgeInsets.all(12.0),
                           child: Text(
                             '${day.day}',
                             style: const TextStyle(color: Colors.red),
@@ -275,10 +329,14 @@ class _HolidayCalenderState extends State<HolidayCalender> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset("assets/icons/Holiday.png", height: 12, color: AppColors.kBrown.withOpacity(.6)),
+                  Image.asset("assets/icons/Holiday.png",
+                      height: 12, color: AppColors.kBrown.withOpacity(.6)),
                   const SizedBox(width: 5),
                   Text(resultedDate,
-                      style: getCustomTextStyle(fontWeight: FontWeight.w400, fontSize: 12, color: AppColors.kBrown)),
+                      style: getCustomTextStyle(
+                          fontWeight: FontWeight.w400,
+                          fontSize: 12,
+                          color: AppColors.kBrown)),
                 ],
               ),
             ),
@@ -292,7 +350,8 @@ class _HolidayCalenderState extends State<HolidayCalender> {
                   itemCount: value.length,
                   itemBuilder: (context, index) {
                     return Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 8.0, vertical: 4.0),
                       padding: const EdgeInsets.all(8.0),
                       decoration: BoxDecoration(
                         color: AppColors.kWarningToastBgColor.withOpacity(.7),
@@ -303,8 +362,12 @@ class _HolidayCalenderState extends State<HolidayCalender> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(value[index].holidayEn, style: getTextStyle(16, FontWeight.normal, Colors.black)),
-                            Text(value[index].holidayBn, style: getTextStyle(14, FontWeight.normal, AppColors.kBrown)),
+                            Text(value[index].holidayEn,
+                                style: getTextStyle(
+                                    16, FontWeight.normal, Colors.black)),
+                            Text(value[index].holidayBn,
+                                style: getTextStyle(
+                                    14, FontWeight.normal, AppColors.kBrown)),
                             SizedBox(height: 6)
                           ],
                         ),
@@ -344,7 +407,8 @@ class _HolidayCalenderState extends State<HolidayCalender> {
                               child: const Center(
                                 child: Text(
                                   'Today',
-                                  style: TextStyle(color: AppColors.kBrown, fontSize: 14),
+                                  style: TextStyle(
+                                      color: AppColors.kBrown, fontSize: 14),
                                 ),
                               ),
                             ),

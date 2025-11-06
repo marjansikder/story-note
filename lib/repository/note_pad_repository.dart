@@ -1,30 +1,38 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:date_calculator/models/notes_model.dart';
-import 'package:hive/hive.dart';
 
 class NotesRepository {
-  late final Box<Note> _notesBox;
+  NotesRepository({FirebaseFirestore? fireStore})
+      : _fireStore = fireStore ?? FirebaseFirestore.instance;
 
-  Future<void> init() async {
-    _notesBox = await Hive.openBox<Note>('notes_box');
+  final FirebaseFirestore _fireStore;
+
+  CollectionReference<Map<String, dynamic>> _notesCollection(String uid) {
+    return _fireStore.collection('users').doc(uid).collection('notes');
   }
 
-  List<Note> getAllNotes() {
-    return _notesBox.values.toList()..sort((a, b) => b.modifiedTime.compareTo(a.modifiedTime));
+  Stream<List<Note>> watchNotes(String uid) {
+    return _notesCollection(uid)
+        .orderBy('modifiedTime', descending: true)
+        .snapshots()
+        .map((snapshot) => snapshot.docs.map(Note.fromDocument).toList());
   }
 
-  Future<void> addNote(Note note) async {
-    await _notesBox.add(note);
+  Future<void> upsertNote(String uid, Note note) async {
+    if (note.id.isEmpty) {
+      throw ArgumentError('Cannot update a note without an id.');
+    }
+    await _notesCollection(uid).doc(note.id).set(note.toMap());
   }
 
-  Future<void> updateNote(Note note) async {
-    await note.save();
+  Future<void> deleteNote(String uid, Note note) async {
+    if (note.id.isEmpty) return;
+    await _notesCollection(uid).doc(note.id).delete();
   }
 
-  Future<void> deleteNote(Note note) async {
-    await note.delete();
-  }
-
-  Future<void> close() async {
-    await _notesBox.close();
+  Future<Note> createNote(String uid, Note note) async {
+    final docRef = await _notesCollection(uid).add(note.toMap());
+    final doc = await docRef.get();
+    return Note.fromDocument(doc);
   }
 }
