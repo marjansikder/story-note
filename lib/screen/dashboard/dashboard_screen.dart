@@ -1,9 +1,9 @@
-import 'package:date_calculator/screen/age_calculator/age_calculator_screen.dart';
-import 'package:date_calculator/screen/notes/note_pad_screen.dart';
-import 'package:date_calculator/screen/setting/settings_screen.dart';
-import 'package:date_calculator/utils/colors.dart';
 import 'package:flutter/material.dart' hide Badge;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:story_notes/screen/age_calculator/age_calculator_screen.dart';
+import 'package:story_notes/screen/notes/note_pad_screen.dart';
+import 'package:story_notes/screen/setting/settings_screen.dart';
+import 'package:story_notes/utils/colors.dart';
 
 import '../../providers/default_provider.dart';
 import '../calender/holiday_calendar_screen.dart';

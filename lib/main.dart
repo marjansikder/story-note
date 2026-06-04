@@ -1,14 +1,17 @@
-import 'package:date_calculator/screen/dashboard/dashboard_screen.dart';
-import 'package:date_calculator/screen/age_calculator/age_calculator_screen.dart';
-import 'package:date_calculator/screen/calender/calendar_screen.dart';
-import 'package:date_calculator/firebase_options.dart';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:story_notes/screen/age_calculator/age_calculator_screen.dart';
+import 'package:story_notes/screen/calender/calendar_screen.dart';
+import 'package:story_notes/screen/dashboard/dashboard_screen.dart';
+import 'package:story_notes/widgets/auth_gate.dart';
 import 'package:toastification/toastification.dart';
-import 'package:date_calculator/widgets/auth_gate.dart';
+
+import 'firebase_options.dart';
+
 
 final navigatorKey = GlobalKey<NavigatorState>();
 

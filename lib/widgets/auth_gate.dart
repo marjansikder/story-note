@@ -1,10 +1,10 @@
-import 'package:date_calculator/providers/auth_provider.dart';
-import 'package:date_calculator/utils/colors.dart';
-import 'package:date_calculator/utils/text_style.dart';
-import 'package:date_calculator/utils/toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:story_notes/providers/auth_provider.dart';
+import 'package:story_notes/utils/colors.dart';
+import 'package:story_notes/utils/text_style.dart';
+import 'package:story_notes/utils/toast.dart';
 
 class AuthGate extends ConsumerWidget {
   const AuthGate({super.key, required this.child});

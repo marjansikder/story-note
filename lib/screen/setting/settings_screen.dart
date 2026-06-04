@@ -1,11 +1,11 @@
-import 'package:date_calculator/providers/auth_provider.dart';
-import 'package:date_calculator/utils/colors.dart';
-import 'package:date_calculator/utils/text_style.dart';
-import 'package:date_calculator/widgets/app_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:story_notes/providers/auth_provider.dart';
+import 'package:story_notes/utils/colors.dart';
+import 'package:story_notes/utils/text_style.dart';
+import 'package:story_notes/widgets/app_bar.dart';
 
 class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});

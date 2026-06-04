@@ -1,5 +1,6 @@
-import 'package:date_calculator/utils/text_style.dart';
+
 import 'package:flutter/material.dart';
+import 'package:story_notes/utils/text_style.dart';
 
 import 'colors.dart';
 

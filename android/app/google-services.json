@@ -7,26 +7,34 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:11608640547:android:3721f6a240ec471af6b596",
+        "mobilesdk_app_id": "1:11608640547:android:0946847cda47ac0bf6b596",
         "android_client_info": {
-          "package_name": "com.story.note.date_calculator"
+          "package_name": "com.story.note.holiday_calendar"
         }
       },
       "oauth_client": [
         {
-          "client_id": "11608640547-8ubb7j8jq2mr4h70na5defse5afrniva.apps.googleusercontent.com",
+          "client_id": "11608640547-e0icrm6mnv3du0j41dv0ub75qr06ii7d.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.story.note.date_calculator",
-            "certificate_hash": "229fc42c2486efdaf30439a1edfbddf6236be13a"
+            "package_name": "com.story.note.holiday_calendar",
+            "certificate_hash": "b74d9531253e5103b09ba0ca0f96fc2d23fa7b94"
           }
         },
         {
-          "client_id": "11608640547-k969fld08hliomj7sfad7t5tu3t4kfms.apps.googleusercontent.com",
+          "client_id": "11608640547-j7i5p9h0m4pkmkvd6r2k08u7i92hbvt1.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.story.note.date_calculator",
-            "certificate_hash": "bbbd501ced6ff88ab04db429b9b00ce2c28c4f05"
+            "package_name": "com.story.note.holiday_calendar",
+            "certificate_hash": "a710daabc38455c1987bfdb556d2ecbbedb880ee"
+          }
+        },
+        {
+          "client_id": "11608640547-k1knfuk8kbdinsmcmjj3b7p1is4tk8gm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.story.note.holiday_calendar",
+            "certificate_hash": "88feceaac435fb5adabb329ac0d48dd71241dd9a"
           }
         },
         {

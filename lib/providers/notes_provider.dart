@@ -1,7 +1,9 @@
-import 'package:date_calculator/models/notes_model.dart';
-import 'package:date_calculator/providers/auth_provider.dart';
-import 'package:date_calculator/repository/note_pad_repository.dart';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:story_notes/models/notes_model.dart';
+import 'package:story_notes/repository/note_pad_repository.dart';
+
+import 'auth_provider.dart';
 
 final notesRepositoryProvider = Provider<NotesRepository>((ref) {
   return NotesRepository();

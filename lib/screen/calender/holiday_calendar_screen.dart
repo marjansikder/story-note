@@ -1,10 +1,10 @@
 import 'dart:collection';
 
-import 'package:date_calculator/utils/colors.dart';
-import 'package:date_calculator/utils/text_style.dart';
-import 'package:date_calculator/widgets/app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:story_notes/utils/colors.dart';
+import 'package:story_notes/utils/text_style.dart';
+import 'package:story_notes/widgets/app_bar.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 /// Event class to represent an event

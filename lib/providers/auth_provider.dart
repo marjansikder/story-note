@@ -1,6 +1,6 @@
-import 'package:date_calculator/services/auth_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:story_notes/services/auth_service.dart';
 
 final authServiceProvider = Provider<AuthService>((ref) {
   return AuthService();

@@ -1,4 +1,4 @@
-package com.story.note.date_calculator
+package com.story.note.holiday_calendar
 
 import io.flutter.embedding.android.FlutterActivity
 

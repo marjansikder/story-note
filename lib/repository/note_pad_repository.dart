@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:date_calculator/models/notes_model.dart';
+import 'package:story_notes/models/notes_model.dart';
+
 
 class NotesRepository {
   NotesRepository({FirebaseFirestore? fireStore})

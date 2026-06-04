@@ -1,6 +1,7 @@
-import 'package:date_calculator/utils/colors.dart';
-import 'package:date_calculator/utils/font_util.dart';
+
 import 'package:flutter/material.dart';
+import 'package:story_notes/utils/colors.dart';
+import 'package:story_notes/utils/font_util.dart';
 
 class CustomAppBarWithShadow extends StatelessWidget
     implements PreferredSizeWidget {
