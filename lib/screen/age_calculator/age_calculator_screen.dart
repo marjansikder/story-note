@@ -18,7 +18,6 @@ class AgeCalculatorScreen extends ConsumerStatefulWidget {
 class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
   DateTime? _fromDate = DateTime.now();
   DateTime? _toDate = DateTime.now();
-  DateTime selectedFromDate = DateTime.now();
   String? daysDuration;
   String? monthsDuration;
   String? yearsDuration;
@@ -343,7 +342,7 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
     final DateTime? picked = await showDatePicker(
         keyboardType: TextInputType.text,
         context: context,
-        initialDate: DateTime.now(),
+        initialDate: _fromDate ?? DateTime.now(),
         firstDate: DateTime(1920, 1),
         lastDate: DateTime(2101),
         cancelText: 'Cancel',
@@ -374,7 +373,7 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
             child: child!,
           );
         });
-    if (picked != null && picked != selectedFromDate) {
+    if (picked != null && picked != _fromDate) {
       setState(() {
         _fromDate = picked;
       });
@@ -385,7 +384,7 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
     final DateTime? picked = await showDatePicker(
         context: context,
         keyboardType: TextInputType.text,
-        initialDate: DateTime.now(),
+        initialDate: _toDate ?? DateTime.now(),
         firstDate: DateTime(2015, 8),
         lastDate: DateTime(2101),
         cancelText: 'Cancel',
@@ -416,7 +415,7 @@ class _AgeCalculatorScreenState extends ConsumerState<AgeCalculatorScreen> {
             child: child!,
           );
         });
-    if (picked != null && picked != selectedFromDate) {
+    if (picked != null && picked != _toDate) {
       setState(() {
         _toDate = picked;
       });
