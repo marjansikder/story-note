@@ -74,3 +74,33 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:34.5.0')
 
 }
+
+if (System.getProperty("os.name").contains("Mac")) {
+    tasks.matching {
+        it.name == "assembleRelease"
+    }.configureEach {
+        doLast {
+            exec {
+                commandLine(
+                        "open",
+                        "${rootProject.projectDir}/../build/app/outputs/flutter-apk"
+                )
+            }
+        }
+    }
+}
+
+if (System.getProperty("os.name").contains("Mac")) {
+    tasks.matching {
+        it.name == "bundleRelease"
+    }.configureEach {
+        doLast {
+            exec {
+                commandLine(
+                        "open",
+                        "${rootProject.projectDir}/../build/app/outputs/bundle/release"
+                )
+            }
+        }
+    }
+}
