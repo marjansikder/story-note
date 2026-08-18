@@ -18,18 +18,17 @@ class Event {
 // Example data
 final kToday = DateTime.now();
 final kFirstDay = DateTime(kToday.year, 1, 1);
-final kLastDay = DateTime(2026, 12, 31);
+final kLastDay = DateTime(2027, 12, 31);
 
 // Sample events
 final kEvents = LinkedHashMap<DateTime, List<Event>>(
   equals: isSameDay,
   hashCode: (DateTime key) => key.day * 1000000 + key.month * 10000 + key.year,
 )..addAll({
+
     /// YEAR : 2025
     DateTime(2025, 2, 15): [Event('শবে বরাত', 'Shab e-Barat')],
-    DateTime(2025, 2, 21): [
-      Event('আন্তর্জাতিক মাতৃভাষা দিবস', 'International Mother Language Day')
-    ],
+    DateTime(2025, 2, 21): [Event('আন্তর্জাতিক মাতৃভাষা দিবস', 'International Mother Language Day')],
     DateTime(2025, 3, 26): [Event('স্বাধীনতা দিবস', 'Independence Day')],
     DateTime(2025, 3, 28): [Event('শবে কদর', 'Shab e-Qadr')],
     DateTime(2025, 3, 29): [Event('ঈদুল ফিতরের ছুটি', 'Eid ul-Fitr Holiday')],
@@ -54,16 +53,12 @@ final kEvents = LinkedHashMap<DateTime, List<Event>>(
     DateTime(2025, 12, 25): [Event('বড়দিন', 'Christmas Day')],
 
     /// YEAR : 2026
-    DateTime(2026, 2, 21): [
-      Event('আন্তর্জাতিক মাতৃভাষা দিবস', 'International Mother Language Day')
-    ],
+    DateTime(2026, 2, 21): [Event('আন্তর্জাতিক মাতৃভাষা দিবস', 'International Mother Language Day')],
     DateTime(2026, 3, 19): [Event('ঈদুল ফিতরের ছুটি', 'Eid-ul-Fitr Holiday')],
     DateTime(2026, 3, 20): [Event('ঈদুল ফিতরের ছুটি', 'Eid-ul-Fitr Holiday')],
     DateTime(2026, 3, 22): [Event('ঈদুল ফিতরের ছুটি', 'Eid-ul-Fitr Holiday')],
     DateTime(2026, 3, 23): [Event('ঈদুল ফিতরের ছুটি', 'Eid-ul-Fitr Holiday')],
-    DateTime(2026, 3, 26): [
-      Event('স্বাধীনতা ও জাতীয় দিবস', 'Independence Day')
-    ],
+    DateTime(2026, 3, 26): [Event('স্বাধীনতা ও জাতীয় দিবস', 'Independence Day')],
     DateTime(2026, 4, 14): [Event('পহেলা বৈশাখ', 'Bangla New Year')],
     DateTime(2026, 5, 1): [Event('মে দিবস', 'May Day')],
     DateTime(2026, 5, 11): [Event('বুদ্ধ পূর্ণিমা', 'Buddha Purnima')],
@@ -79,18 +74,35 @@ final kEvents = LinkedHashMap<DateTime, List<Event>>(
     DateTime(2026, 5, 31): [Event('ঈদুল আযহার ছুটি', 'Eid-ul-Adha Holiday')],
     DateTime(2026, 6, 26): [Event('আশুরা', 'Ashura')],
     DateTime(2026, 8, 5): [Event('গণঅভ্যুত্থান দিবস', 'Mass Uprising Day')],
-    DateTime(2026, 8, 26): [
-      Event('ঈদে মিলাদুন্নবী (সা.)', 'Eid-e-Milad-un-Nabi')
-    ],
+    DateTime(2026, 8, 26): [Event('ঈদে মিলাদুন্নবী (সা.)', 'Eid-e-Milad-un-Nabi')],
     DateTime(2026, 9, 4): [Event('জন্মাষ্টমী', 'Janmashtami')],
-    DateTime(2026, 10, 20): [
-      Event('দুর্গাপূজা - মহানবমী', 'Durga Puja (Mahanabami)')
-    ],
-    DateTime(2026, 10, 21): [
-      Event('দুর্গা পূজা - বিজয়া দশমী', 'Durga Puja (Bijoya Dashami)')
-    ],
+    DateTime(2026, 10, 20): [Event('দুর্গাপূজা - মহানবমী', 'Durga Puja (Mahanabami)')],
+    DateTime(2026, 10, 21): [Event('দুর্গা পূজা - বিজয়া দশমী', 'Durga Puja (Bijoya Dashami)')],
     DateTime(2026, 12, 16): [Event('বিজয় দিবস', 'Victory Day')],
     DateTime(2026, 12, 25): [Event('বড়দিন', 'Christmas Day')],
+
+    /// YEAR: 2027
+    DateTime(2027, 1, 24): [Event('শবে বরাত', 'Shab-e-Barat')],
+    DateTime(2027, 2, 21): [Event('আন্তর্জাতিক মাতৃভাষা দিবস', 'International Mother Language Day')],
+    DateTime(2027, 3, 5): [Event('জুমাতুল বিদা', 'Jumatul Bida')],
+    DateTime(2027, 3, 6): [Event('শবে কদর', 'Shab-e-Qadr')],
+    DateTime(2027, 3, 9): [Event('ঈদুল ফিতর', 'Eid ul-Fitr')],
+    DateTime(2027, 3, 10): [Event('ঈদুল ফিতরের ছুটি', 'Eid-ul-Fitr Holiday')],
+    DateTime(2027, 3, 11): [Event('ঈদুল ফিতরের ছুটি', 'Eid-ul-Fitr Holiday')],
+    DateTime(2027, 3, 26): [Event('স্বাধীনতা ও জাতীয় দিবস', 'Independence Day')],
+    DateTime(2027, 4, 14): [Event('পহেলা বৈশাখ', 'Bangla New Year')],
+    DateTime(2027, 5, 1): [Event('মে দিবস', 'May Day')],
+    DateTime(2027, 5, 16): [Event('ঈদুল আযহার ছুটি', 'Eid-ul-Adha Holiday')],
+    DateTime(2027, 5, 17): [Event('ঈদুল আযহা', 'Eid ul-Adha')],
+    DateTime(2027, 5, 18): [Event('ঈদুল আযহার ছুটি', 'Eid-ul-Adha Holiday')],
+    DateTime(2027, 5, 20): [Event('বুদ্ধ পূর্ণিমা', 'Buddha Purnima')],
+    DateTime(2027, 6, 15): [Event('আশুরা', 'Ashura')],
+    DateTime(2027, 8, 5): [Event('গণঅভ্যুত্থান দিবস', 'Mass Uprising Day')],
+    DateTime(2027, 8, 15): [Event('ঈদে মিলাদুন্নবী (সা.)', 'Eid-e-Milad-un-Nabi')],
+    DateTime(2027, 8, 24): [Event('জন্মাষ্টমী', 'Janmashtami')],
+    DateTime(2027, 10, 10): [Event('দুর্গা পূজা - বিজয়া দশমী', 'Durga Puja (Bijoya Dashami)')],
+    DateTime(2027, 12, 16): [Event('বিজয় দিবস', 'Victory Day')],
+    DateTime(2027, 12, 25): [Event('বড়দিন', 'Christmas Day')],
   });
 
 List<DateTime> daysInRange(DateTime start, DateTime end) {
